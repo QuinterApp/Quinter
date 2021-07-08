@@ -1,0 +1,10 @@
+control+alt+shift+t=Tweet
+alt+shift+[=prev_tl
+alt+shift+]=next_tl
+alt+shift+;=prev_item
+alt+shift+'=next_item
+alt+shift+r=Reply
+alt+control+shift+r=Retweet
+alt+shift+l=Like
+alt+control+shift+d=Message
+alt+control+shift+pageup=Prev

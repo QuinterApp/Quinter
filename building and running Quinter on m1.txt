@@ -1,0 +1,21 @@
+Step 1. Install homebrew and add it to your path.
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+export PATH="/opt/homebrew/bin:$PATH" >> ~/.zshrc
+step 2. install python 3.9 and wxpython.
+brew install python3 wxpython
+step 3. install Quinter's requirements.
+pip3.9 install -r requirements.txt
+step 4. go into the directory /opt/homebrew/frameworks/python.framework/versions/3.9/lib/python3.9/site-packages/
+step 5. In accessible_output2, delete the lib folder.
+step 6. in sound_lib/lib, delete the x86 folder and replace the x64 folder with the one in m1files.
+step7. try to run it with python3.9 quinter.pyw
+If it runs.
+Step 8. Go clone Pyinstaller on github
+git clone http://github.com/pyinstaller/pyinstaller
+step 9. Build the bootloader.
+cd bootloader
+python ./waf all
+step 10. Install pyinstaller.
+cd ..
+python3.9 setup.py install
+step 11 (to build). run ./compileM1.command from the Quinter source dir. And hopefully the magic will happen.

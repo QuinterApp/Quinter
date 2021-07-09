@@ -8,3 +8,5 @@ youtube-dl
 pyperclip
 wxpython
 twitter-text-parser
+pytz
+tzlocal

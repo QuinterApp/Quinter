@@ -12,6 +12,8 @@ import requests
 import webbrowser
 import application
 import sound
+import pytz
+import tzlocal
 
 url_re=re.compile(r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?]))")
 url_re2=re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ ]*")
@@ -279,10 +281,10 @@ def class_match(d1, d2):
 
 def parse_date(date,convert=True):
 	ti=datetime.datetime.now()
-	tz=time.timezone
+	tz=tzlocal.get_localzone() 
 	if convert==True:
 		try:
-			date+=datetime.timedelta(seconds=0-tz)
+			date=date.replace(tzinfo=pytz.utc).astimezone(tz)
 		except:
 			pass
 	returnstring=""

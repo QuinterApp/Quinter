@@ -1,4 +1,4 @@
-cd "/users/Mason/Dropbox/avoid random evil guy/quinter"
+cd "/users/Mason/Dropbox/projects/python/py3/quinter"
 rm -R macdist
 pyinstaller --noupx --clean --windowed --osx-bundle-identifier me.masonasons.quinter quinter.pyw --noconfirm --distpath macdist --workpath macbuild
 cp keymac.keymap dist/quinter.app/contents/resources/keymac.keymap

@@ -4,5 +4,4 @@ Add shortcut keys for jumping to timelines
 relative times
 export buffers feature
 view blocked and muted users.
-fix multi line edits so you can actually type multilines in them
 add command line arguments for external player

@@ -5,7 +5,7 @@ import globals
 import sound
 import utils
 import platform
-from twitter_text import parse_tweet
+import twitter_text.parse_tweet
 
 text_box_size=(800,600)
 class TweetGui(wx.Dialog):
@@ -138,7 +138,7 @@ class TweetGui(wx.Dialog):
 		sound.play(self.account,"max_length")
 
 	def Chars(self, event):
-		results=parse_tweet(self.text.GetValue())
+		results=twitter_text.parse_tweet.parse_tweet(self.text.GetValue())
 		length=results.weightedLength
 		if length>0 and self.max_length>0:
 			percent=str(int((length/self.max_length)*100))

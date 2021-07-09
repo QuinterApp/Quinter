@@ -1,5 +1,6 @@
 0.58
 The number of characters is now calculated correctly when multibyte characters are included when composing a tweet.
+Fixed the result of "$created_at$" of tweet being strange in some environments.
 
 0.57
 Emergency fix for sounds not working on some clients.

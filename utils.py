@@ -279,7 +279,11 @@ def class_match(d1, d2):
 
 def parse_date(date,convert=True):
 	ti=datetime.datetime.now()
-	tz=time.timezone
+	dst=time.localtime().tm_isdst
+	if dst==1:
+		tz=time.altzone
+	else:
+		tz=time.timezone
 	if convert==True:
 		try:
 			date+=datetime.timedelta(seconds=0-tz)

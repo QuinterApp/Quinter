@@ -1,6 +1,7 @@
 0.58
 The number of characters is now calculated correctly when multibyte characters are included when composing a tweet.
 Fixed the result of "$created_at$" of tweet being strange in some environments.
+You can now use control/command enter to insert a newline in new tweet fields.
 
 0.57
 Emergency fix for sounds not working on some clients.

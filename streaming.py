@@ -14,12 +14,16 @@ import urllib3
 import ssl
 import utils
 
+from tweepy  import TweepError
 class StreamListener(tweepy.StreamListener):
 
 	def __init__(self, account, *args, **kwargs):
 		super(StreamListener, self).__init__(*args, **kwargs)
 		self.account = account
-		self.users = [str(id) for id in self.account.api.friends_ids()]
+		try:
+			self.users = [str(id) for id in self.account.api.friends_ids()]
+		except TweepError as e:
+			utils.handle_error(e)
 		muted=self.account.api.mutes()
 		for i in muted:
 			if i.id_str in self.users:

@@ -22,14 +22,13 @@ class TweetGui(wx.Dialog):
 		self.main_box = wx.BoxSizer(wx.VERTICAL)
 		self.text_label = wx.StaticText(self.panel, -1, "Te&xt")
 		if globals.prefs.wrap:
-			self.text = wx.TextCtrl(self.panel, -1, "",style=wx.TE_MULTILINE|wx.TE_PROCESS_ENTER,size=text_box_size)
+			self.text = wx.TextCtrl(self.panel, -1, "",style=wx.TE_MULTILINE,size=text_box_size)
 		else:
-			self.text = wx.TextCtrl(self.panel, -1, "",style=wx.TE_MULTILINE|wx.TE_PROCESS_ENTER|wx.TE_DONTWRAP,size=text_box_size)
+			self.text = wx.TextCtrl(self.panel, -1, "",style=wx.TE_MULTILINE|wx.TE_DONTWRAP,size=text_box_size)
 		if platform.system()=="Darwin":
 			self.text.MacCheckSpelling(True)
 		self.main_box.Add(self.text, 0, wx.ALL, 10)
 		self.text.SetFocus()
-		self.text.Bind(wx.EVT_TEXT_ENTER, self.Tweet)
 		self.text.Bind(wx.EVT_TEXT, self.Chars)
 		if self.type!="message":
 			self.text.AppendText(inittext)
@@ -44,11 +43,10 @@ class TweetGui(wx.Dialog):
 			self.text2_label = wx.StaticText(self.panel, -1, "Recipient")
 		if self.type=="reply" or self.type=="quote" or self.type=="message":
 			if self.type=="message":
-				self.text2 = wx.TextCtrl(self.panel, -1, "",style=wx.TE_PROCESS_ENTER|wx.TE_DONTWRAP,size=text_box_size)
+				self.text2 = wx.TextCtrl(self.panel, -1, "",style=wx.TE_DONTWRAP,size=text_box_size)
 			else:
-				self.text2 = wx.TextCtrl(self.panel, -1, "",style=wx.TE_MULTILINE|wx.TE_PROCESS_ENTER|wx.TE_DONTWRAP|wx.TE_READONLY,size=text_box_size)
+				self.text2 = wx.TextCtrl(self.panel, -1, "",style=wx.TE_MULTILINE|wx.TE_DONTWRAP|wx.TE_READONLY,size=text_box_size)
 			self.main_box.Add(self.text2, 0, wx.ALL, 10)
-			self.text2.Bind(wx.EVT_TEXT_ENTER, self.Tweet)
 			if self.type=="message":
 				self.text2.AppendText(inittext)
 			else:
@@ -76,14 +74,23 @@ class TweetGui(wx.Dialog):
 			self.thread=wx.CheckBox(self.panel, -1, "&Thread mode")
 			self.main_box.Add(self.thread, 0, wx.ALL, 10)
 		self.tweet = wx.Button(self.panel, wx.ID_DEFAULT, "&Send")
-		self.tweet.SetDefault()
+#		self.tweet.SetDefault()
 		self.tweet.Bind(wx.EVT_BUTTON, self.Tweet)
 		self.main_box.Add(self.tweet, 0, wx.ALL, 10)
 		self.close = wx.Button(self.panel, wx.ID_CANCEL, "&Cancel")
 		self.close.Bind(wx.EVT_BUTTON, self.OnClose)
 		self.main_box.Add(self.close, 0, wx.ALL, 10)
 		self.Chars(None)
+		self.text.Bind(wx.EVT_CHAR, self.onKeyPress)
 		self.panel.Layout()
+
+	def onKeyPress(self,event):
+		mods = event.HasAnyModifiers()
+		keycode = event.GetKeyCode()
+		if keycode == wx.WXK_RETURN:
+			if mods==False:
+				self.Tweet(None)
+		event.Skip()
 
 	def OnToggle(self,event):
 		index=event.GetInt()
@@ -110,6 +117,13 @@ class TweetGui(wx.Dialog):
 			if i.screen_name.lower().startswith(text.lower()) or i.name.lower().startswith(text.lower()):
 				self.create_menu_item(self.menu, i.name+" (@"+i.screen_name+")", lambda event, orig=text, text=i.screen_name: self.OnUser(event,orig, text))
 		self.PopupMenu(self.menu)
+
+	def Newline(self,event):
+		if platform.system()=="Darwin":
+			nl="\n"
+		else:
+			nl="\r\n"
+		self.text.WriteText(nl)
 
 	def create_menu_item(self,menu, label, func):
 		item = wx.MenuItem(menu, -1, label)

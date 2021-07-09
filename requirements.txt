@@ -7,3 +7,4 @@ git+http://github.com/accessibleapps/keyboard_handler
 youtube-dl
 pyperclip
 wxpython
+twitter-text-parser

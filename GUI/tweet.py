@@ -5,6 +5,7 @@ import globals
 import sound
 import utils
 import platform
+from twitter_text import parse_tweet
 
 text_box_size=(800,600)
 class TweetGui(wx.Dialog):
@@ -29,7 +30,6 @@ class TweetGui(wx.Dialog):
 		self.main_box.Add(self.text, 0, wx.ALL, 10)
 		self.text.SetFocus()
 		self.text.Bind(wx.EVT_TEXT_ENTER, self.Tweet)
-		self.text.Bind(wx.EVT_TEXT_MAXLEN, self.Maximum)
 		self.text.Bind(wx.EVT_TEXT, self.Chars)
 		if self.type!="message":
 			self.text.AppendText(inittext)
@@ -37,10 +37,8 @@ class TweetGui(wx.Dialog):
 		else:
 			cursorpos=0
 		if self.type=="message":
-			self.text.SetMaxLength(10000)
 			self.max_length=10000
 		else:
-			self.text.SetMaxLength(280)
 			self.max_length=280
 		if self.type=="message":
 			self.text2_label = wx.StaticText(self.panel, -1, "Recipient")
@@ -136,15 +134,18 @@ class TweetGui(wx.Dialog):
 			self.text.AppendText(" "+self.account.prefs.footer)
 		self.text.SetInsertionPoint(cursorpos)
 
-	def Maximum(self,event):
+	def maximum(self):
 		sound.play(self.account,"max_length")
 
 	def Chars(self, event):
-		length=round(len(self.text.GetValue()),0)
+		results=parse_tweet(self.text.GetValue())
+		length=results.weightedLength
 		if length>0 and self.max_length>0:
 			percent=str(int((length/self.max_length)*100))
 		else:
 			percent="0"
+		if self.max_length>0 and length>self.max_length:
+			self.maximum()
 		self.SetLabel(self.type+" - "+str(length).split(".")[0]+" of "+str(self.max_length)+" characters ("+percent+" Percent)")
 
 	def Tweet(self, event):

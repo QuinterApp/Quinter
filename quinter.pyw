@@ -8,8 +8,8 @@ if platform.system()!="Darwin":
 import shutil
 import os
 if os.path.exists(os.path.expandvars("%temp%\gen_py"))==True:
-		shutil.rmtree(os.path.expandvars("%temp%\gen_py"))
-#Bye foo!
+	shutil.rmtree(os.path.expandvars("%temp%\gen_py"))
+# Bye foo!
 import wx
 app = wx.App(redirect=False)
 

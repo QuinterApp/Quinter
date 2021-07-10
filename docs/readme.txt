@@ -37,8 +37,8 @@ Alt+Windows+Shift+U: Open a user's profile.
 Alt+Windows+Tick: Destroy a timeline.
 Alt+Windows+Control+U: Refresh.
 Alt+Windows+Home: Go to the top of the buffer.
-Alt+Windows+End: Go to the end of a buffer.
-Alt+Win+Delete: Delete a tweet.
+Alt+Windows+End: Go to the end of the buffer.
+Alt+Windows+Delete: Delete a tweet.
 Alt+Windows+Shift+Q: Exit the program.
 Alt+Windows+Left Bracket: View followers.
 Alt+Windows+Right bracket: View Friends.

@@ -155,10 +155,16 @@ def friends(account,id=-1):
 	flw.Show()
 
 def mutual_following(account):
+	if account.me.friends_count>globals.prefs.user_limit*200 or account.me.followers_count>globals.prefs.user_limit*200:
+		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible.","Error")
+		return
 	flw=view.UserViewGui(account,account.mutual_following(),"Mutual followers")
 	flw.Show()
 
 def not_following_me(account):
+	if account.me.friends_count>globals.prefs.user_limit*200 or account.me.followers_count>globals.prefs.user_limit*200:
+		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible.","Error")
+		return
 	flw=view.UserViewGui(account,account.not_following_me(),"Users not following me")
 	flw.Show()
 

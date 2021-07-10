@@ -68,7 +68,8 @@ class ListsGui(wx.Dialog):
 		if len(self.lists)>0:
 			self.list.SetSelection(0)
 		else:
-			self.load.Enable(False)
+			if hasattr(self,"load"):
+				self.load.Enable(False)
 			if hasattr(self,"edit"):
 				self.edit.Enable(False)
 			if hasattr(self,"remove"):

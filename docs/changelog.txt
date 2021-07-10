@@ -1,5 +1,6 @@
 0.59
 Fixes list manager unable to properly load with no lists.
+If your account API call number could produce false positives, you're now alerted.
 
 0.58
 The number of characters is now calculated correctly when multibyte characters are included when composing a tweet.

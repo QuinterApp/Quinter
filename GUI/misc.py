@@ -175,10 +175,10 @@ def not_following(account):
 def user_timeline_user(account,username,focus=True):
 	if username in account.prefs.user_timelines and focus==True:
 		utils.alert("You already have a timeline for this user open.","Error")
-		return
+		return False
 	if len(account.prefs.user_timelines)>=8:
 		utils.alert("You cannot have this many user timelines open! Please consider using a list instead.","Error")
-		return
+		return False
 	user=utils.lookup_user_name(account,username)
 	if user!=-1:
 		if focus==False:
@@ -192,6 +192,7 @@ def user_timeline_user(account,username,focus=True):
 			account.currentIndex=len(account.timelines)-1
 			main.window.list.SetSelection(len(account.timelines)-1)
 			main.window.on_list_change(None)
+		return True
 
 def search(account,q,focus=True):
 	if focus==False:

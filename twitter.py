@@ -67,7 +67,9 @@ class twitter(object):
 		timeline.add(self,"Likes","likes")
 		timeline.add(self,"Sent","user",self.me.screen_name,self.me)
 		for i in self.prefs.user_timelines:
-			misc.user_timeline_user(self,i,False)
+			tl=misc.user_timeline_user(self,i,False)
+			if tl==False:
+				self.prefs.user_timelines.remove(i)
 		for i in self.prefs.list_timelines:
 			misc.list_timeline(self,self.api.get_list(list_id=i).name,i,False)
 		for i in self.prefs.search_timelines:

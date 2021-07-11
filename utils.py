@@ -105,8 +105,6 @@ def find_urls_in_tweet(s):
 def template_to_string(s,template=""):
 	if template=="":
 		template=globals.prefs.tweetTemplate
-	if type(s.created_at)!=str:
-		s.created_at=parse_date(s.created_at)
 	temp=template.split(" ")
 	for i in range(len(temp)):
 		if "$" in temp[i]:
@@ -153,7 +151,10 @@ def template_to_string(s,template=""):
 							else:
 								template=template.replace("$"+t[1]+"$",demojied)
 						else:
-							template=template.replace("$"+t[1]+"$",getattr(s,t[1]))
+							if t[1]=="created_at":
+								template=template.replace("$"+t[1]+"$",parse_date(getattr(s,t[1])))
+							else:
+								template=template.replace("$"+t[1]+"$",getattr(s,t[1]))
 					except:
 						try:
 							template=template.replace("$"+t[1]+"$",str(getattr(s,t[1])))

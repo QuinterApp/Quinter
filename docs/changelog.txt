@@ -3,6 +3,7 @@ Fixes list manager unable to properly load with no lists.
 If your account API call number could produce false positives, you're now alerted.
 Fixes a bug where if you launched the program with too many user timelines open, you would not be able to open any more or close the existing ones from your config.
 Adds invisible shortcuts for jumping up and down the timeline by 20 items.
+Fixes a bug where date parsing wouldn't properly show the day on yesterday's tweets when the day changes (Thanks Tyler for reporting)
 
 0.58
 The number of characters is now calculated correctly when multibyte characters are included when composing a tweet.

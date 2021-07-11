@@ -154,7 +154,7 @@ class TweetGui(wx.Dialog):
 
 	def Chars(self, event):
 		if platform.system()!="Darwin":
-			results=twitter_text.parse_tweet.parse_tweet(self.text.GetValue())
+			results=twitter_text.parse_tweet(self.text.GetValue())
 			length=results.weightedLength
 		else:
 			length=len(self.text.GetValue())

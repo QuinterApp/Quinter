@@ -7,7 +7,11 @@
  ##
 
 from ctypes import cdll, CFUNCTYPE, c_bool, c_wchar_p
+import os
+import sys
 
+if sys.version_info[1] >= 8:
+ os.add_dll_directory(".")
 _tolk = cdll.Tolk
 
 _proto_load = CFUNCTYPE(None)

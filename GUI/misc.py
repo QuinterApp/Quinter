@@ -1,3 +1,4 @@
+import math
 import os
 import platform
 import subprocess
@@ -156,14 +157,22 @@ def friends(account,id=-1):
 
 def mutual_following(account):
 	if account.me.friends_count>globals.prefs.user_limit*200 or account.me.followers_count>globals.prefs.user_limit*200:
-		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible.","Error")
+		if account.me.friends_count>account.me.followers_count:
+			calls=math.ceil(account.me.friends_count/200)
+		else:
+			calls=math.ceil(account.me.followers_count/200,0)
+		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible. You would need to perform "+str(calls)+" calls for this analysis to work.","Error")
 		return
 	flw=view.UserViewGui(account,account.mutual_following(),"Mutual followers")
 	flw.Show()
 
 def not_following_me(account):
 	if account.me.friends_count>globals.prefs.user_limit*200 or account.me.followers_count>globals.prefs.user_limit*200:
-		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible.","Error")
+		if account.me.friends_count>account.me.followers_count:
+			calls=math.ceil(account.me.friends_count/200)
+		else:
+			calls=ceil(account.me.followers_count/200)
+		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible. You would need to perform "+str(calls)+" calls for this analysis to work.","Error")
 		return
 	flw=view.UserViewGui(account,account.not_following_me(),"Users not following me")
 	flw.Show()

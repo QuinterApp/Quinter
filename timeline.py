@@ -121,7 +121,7 @@ class timeline(object):
 			pass
 
 	def hide_tl(self):
-		if self.type=="user" or self.type=="list" or self.type=="search":
+		if self.type=="user" and self.name!="sent" or self.type=="list" or self.type=="search":
 			utils.alert("You can't hide this timeline. Try closing it instead.","Error")
 			return
 		self.hide=True

@@ -135,6 +135,8 @@ class timeline(object):
 		main.window.refreshTimelines()
 
 	def load(self,back=False,speech=False,items=[]):
+		if self.hide==True:
+			return False
 		if items==[]:
 			if back==True:
 				if globals.prefs.reversed==False:

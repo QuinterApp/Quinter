@@ -121,6 +121,9 @@ class timeline(object):
 			pass
 
 	def hide_tl(self):
+		if self.type=="user" or self.type=="list" or self.type=="search":
+			utils.alert("You can't hide this timeline. Try closing it instead.","Error")
+			return
 		self.hide=True
 		globals.get_timeline_settings(self.account.me.id,self.name).hide=self.hide
 		globals.save_timeline_settings()

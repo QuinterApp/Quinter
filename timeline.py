@@ -13,6 +13,7 @@ class TimelineSettings(object):
 		self.tl=tl
 		self.mute=False
 		self.read=False
+		self.hide=False
 
 class timeline(object):
 	def __init__(self,account,name,type,data=None,user=None,status=None,silent=False):
@@ -30,10 +31,12 @@ class timeline(object):
 		self.page=0
 		self.mute=False
 		self.read=False
+		self.hide=False
 		for i in globals.timeline_settings:
 			if i.account_id==self.account.me.id and i.tl==self.name:
 				self.mute=i.mute
 				self.read=i.read
+				self.hide=i.hide
 		if self.type=="user" and self.name!="Sent" or self.type=="conversation" or self.type=="search" or self.type=="list":
 			if silent==False:
 				sound.play(self.account,"open")
@@ -116,6 +119,20 @@ class timeline(object):
 				self.process_status(status.quoted_status)
 		except:
 			pass
+
+	def hide_tl(self):
+		self.hide=True
+		globals.get_timeline_settings(self.account.me.id,self.name).hide=self.hide
+		globals.save_timeline_settings()
+		if self.account.currentTimeline==self:
+			self.account.currentTimeline=self.account.timelines[0]
+			main.window.refreshTimelines()
+
+	def unhide_tl(self):
+		self.hide=False
+		globals.get_timeline_settings(self.account.me.id,self.name).hide=self.hide
+		globals.save_timeline_settings()
+		main.window.refreshTimelines()
 
 	def load(self,back=False,speech=False,items=[]):
 		if items==[]:
@@ -227,7 +244,7 @@ class timeline(object):
 						self.index=0
 					else:
 						self.index=len(self.statuses)-1
-				if self.mute==False:
+				if self.mute==False and self.hide==False:
 					self.play()
 				globals.prefs.statuses_received+=newitems
 				if speech==True:

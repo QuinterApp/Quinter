@@ -43,7 +43,7 @@ def register_key(key,name,reg=True):
 
 class invisible_interface(object):
 	def focus_tl(self,sync=False):
-		globals.currentAccount.currentTimeline=globals.currentAccount.timelines[globals.currentAccount.currentIndex]
+		globals.currentAccount.currentTimeline=globals.currentAccount.list_timelines()[globals.currentAccount.currentIndex]
 		if sync==False and globals.prefs.invisible_sync==True or sync==True:
 			main.window.list.SetSelection(globals.currentAccount.currentIndex)
 			main.window.on_list_change(None)
@@ -81,12 +81,12 @@ class invisible_interface(object):
 	def prev_tl(self,sync=False):
 		globals.currentAccount.currentIndex-=1
 		if globals.currentAccount.currentIndex<0:
-			globals.currentAccount.currentIndex=len(globals.currentAccount.timelines)-1
+			globals.currentAccount.currentIndex=len(globals.currentAccount.list_timelines())-1
 		self.focus_tl(sync)
 
 	def next_tl(self,sync=False):
 		globals.currentAccount.currentIndex+=1
-		if globals.currentAccount.currentIndex>=len(globals.currentAccount.timelines):
+		if globals.currentAccount.currentIndex>=len(globals.currentAccount.list_timelines()):
 			globals.currentAccount.currentIndex=0
 		self.focus_tl(sync)
 

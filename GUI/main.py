@@ -8,7 +8,7 @@ import wx
 from keyboard_handler.wx_handler import WXKeyboardHandler
 import globals
 import speak
-from . import account_options, accounts, chooser, invisible, lists, misc, options, profile, search, tray, tweet, view
+from . import account_options, accounts, chooser, invisible, lists, misc, options, profile, search, timelines, tray, tweet, view
 import utils
 import sound
 import timeline
@@ -118,6 +118,10 @@ class MainGui(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.onRefresh, m_refresh)
 		m_prev = menu3.Append(-1, "Load older tweets (alt/option+pageup)", "prev")
 		self.Bind(wx.EVT_MENU, self.onPrev, m_prev)
+		m_hide = menu3.Append(-1, "Hide Timeline ("+ctrl+"+h)", "hide")
+		self.Bind(wx.EVT_MENU, self.OnHide, m_hide)
+		m_manage_hide = menu3.Append(-1, "Manage hidden Timelines ("+ctrl+"+shift+h)", "manage_hide")
+		self.Bind(wx.EVT_MENU, self.OnManageHide, m_manage_hide)
 		m_read = menu3.Append(-1, "Toggle autoread ("+ctrl+"+e)", "autoread")
 		self.Bind(wx.EVT_MENU, self.OnRead, m_read)
 		if platform.system()!="Darwin":
@@ -213,6 +217,8 @@ class MainGui(wx.Frame):
 		accel.append((wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('U'), m_user_profile.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord('W'), self.m_close_timeline.GetId()))
 		accel.append((wx.ACCEL_ALT, wx.WXK_PAGEUP, m_prev.GetId()))
+		accel.append((wx.ACCEL_CTRL, ord('h'), m_hide.GetId()))
+		accel.append((wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('h'), m_manage_hide.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord('L'), m_like.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord('G'), m_conversation.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord(';'), m_speak_user.GetId()))
@@ -291,6 +297,10 @@ class MainGui(wx.Frame):
 		txt=view.ViewTextGui(errors)
 		txt.Show()
 
+	def OnManageHide(self, event=None):
+		gui=timelines.HiddenTimelinesGui(globals.currentAccount)
+		gui.Show()
+
 	def OnCfu(self, event=None):
 		utils.cfu(False)
 
@@ -316,6 +326,9 @@ class MainGui(wx.Frame):
 
 	def OnDelete(self,event=None):
 		misc.delete(globals.currentAccount,globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])
+
+	def OnHide(self,event=None):
+		globals.currentAccount.currentTimeline.hide_tl()
 
 	def OnNextInThread(self,event=None):
 		if globals.prefs.reversed==False:
@@ -364,7 +377,7 @@ class MainGui(wx.Frame):
 	def refreshTimelines(self):
 		old_selection=self.list.GetSelection()
 		self.list.Clear()
-		for i in globals.currentAccount.timelines:
+		for i in globals.currentAccount.list_timelines():
 			self.list.Insert(i.name,self.list.GetCount())
 		try:
 			self.list.SetSelection(old_selection)
@@ -372,7 +385,7 @@ class MainGui(wx.Frame):
 			self.list.SetSelection(1)
 
 	def on_list_change(self, event):
-		globals.currentAccount.currentTimeline=globals.currentAccount.timelines[self.list.GetSelection()]
+		globals.currentAccount.currentTimeline=globals.currentAccount.list_timelines()[self.list.GetSelection()]
 		globals.currentAccount.currentIndex=self.list.GetSelection()
 		if globals.currentAccount.currentTimeline.removable==True:
 			self.m_close_timeline.Enable(True)

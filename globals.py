@@ -44,6 +44,11 @@ def  load():
 	for i in uaccounts:
 		if "Quinter_account" in i:
 			shutil.move(confpath+"/../"+i,confpath+"/"+i.replace("Quinter_",""))
+	prefs.timelinecache_version=prefs.get("timelinecache_version",1)
+	if prefs.timelinecache_version==1:
+		if os.path.exists(confpath+"/timelinecache"):
+			os.remove(confpath+"/timelinecache")
+		prefs.timelinecache_version=2
 	prefs.user_reversed=prefs.get("user_reversed",False)
 	prefs.user_limit=prefs.get("user_limit",4)
 	prefs.tweetTemplate=prefs.get("tweetTemplate","$user.screen_name$: $text$ $created_at$")

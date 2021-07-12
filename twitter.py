@@ -185,6 +185,13 @@ class twitter(object):
 				users.append(i)
 		return users
 
+	def list_timelines(self,hidden=False):
+		tl=[]
+		for i in self.timelines:
+			if i.hide==hidden:
+				tl.append(i)
+		return tl
+
 	def tweet(self,text,id=None,**kwargs):
 		try:
 			if id!=None:

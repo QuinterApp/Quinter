@@ -123,7 +123,7 @@ class ListsGui(wx.Dialog):
 			if self.add==True:
 				self.account.api.add_list_member(user_id=self.user.id, list_id=self.lists[self.list.GetSelection()].id)
 			else:
-				self.api.remove_list_member(user_id=self.user.id, list_id=self.lists[self.list.GetSelection()].id)
+				self.account.api.remove_list_member(user_id=self.user.id, list_id=self.lists[self.list.GetSelection()].id)
 		self.Destroy()
 
 	def OnClose(self, event):
@@ -175,9 +175,9 @@ class NewListGui(wx.Dialog):
 
 	def Create(self, event):
 		if self.list==None:
-			self.api.create_list(self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
+			self.account.api.create_list(self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
 		else:
-			self.api.update_list(list_id=self.list.id, name=self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
+			self.account.api.update_list(list_id=self.list.id, name=self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
 		self.Destroy()
 
 	def OnClose(self, event):

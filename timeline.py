@@ -319,10 +319,13 @@ def timelineThread(account):
 		for i in account.timelines:
 			try:
 				if i.type=="list":
-					members=account.api.list_members(list_id=i.data)
-					i.members=[]
-					for i2 in members:
-						i.members.append(i2.id)
+					try:
+						members=account.api.list_members(list_id=i.data)
+						i.members=[]
+						for i2 in members:
+							i.members.append(i2.id)
+					except:
+						pass
 				if i.type!="conversation":
 					i.load()
 			except TweepError as error:

@@ -45,10 +45,7 @@ class ChooseGui(wx.Dialog):
 			user=view.UserViewGui(self.account,[utils.lookup_user_name(self.account,self.returnvalue)],self.returnvalue+"'s profile")
 			user.Show()
 		elif self.type==self.TYPE_URL:
-			if platform.system()!="Darwin":
-				webbrowser.open(self.returnvalue)
-			else:
-				os.system("open "+self.returnvalue)
+			utils.openURL(self.returnvalue)
 		elif self.type==self.TYPE_LIST:
 			l=lists.ListsGui(self.account,utils.lookup_user_name(self.account,self.returnvalue))
 			l.Show()

@@ -508,3 +508,9 @@ def get_account(id):
 		if i.me.id==id:
 			return i
 	return -1
+
+def openURL(url):
+	if platform.system()!="Darwin":
+		webbrowser.open(url)
+	else:
+		os.system(f"open {url}")

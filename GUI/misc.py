@@ -39,7 +39,10 @@ def url_chooser(account,status):
 		urlList=utils.find_urls_in_text(status.message_create['message_data']['text'])
 	else:
 		urlList = utils.find_urls_in_text(status.text)
-	chooser.chooser(account,title,prompt,urlList,type)
+	if len(urlList) == 1:
+		utils.openURL(urlList[0])
+	else:
+		chooser.chooser(account,title,prompt,urlList,type)
 
 def follow(account,status):
 	u=utils.get_user_objects_in_tweet(account,status)

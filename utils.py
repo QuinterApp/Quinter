@@ -84,7 +84,7 @@ def process_message(s, return_text=False):
 					pass
 
 	s.message_create["message_data"]["text"]=text
-	if return_text==False:
+	if not return_text:
 		return message_template_to_string(s)
 	else:
 		return s.message_create['message_data']['text']
@@ -118,12 +118,12 @@ def template_to_string(s,template=""):
 
 				if hasattr(s,o) and hasattr(getattr(s,o),p):
 					try:
-						if (o=="name" or p=="name") and globals.prefs.demojify==True:
+						if (o=="name" or p=="name") and globals.prefs.demojify:
 							deEmojify=True
 						else:
 							deEmojify=False
 						f1=getattr(s,o)
-						if deEmojify==True:
+						if deEmojify:
 							demojied=demojify(getattr(f1,p))
 							if demojied=="":
 								template=template.replace("$"+t[1]+"$",getattr(f1,"screen_name"))
@@ -141,11 +141,11 @@ def template_to_string(s,template=""):
 			else:
 				if hasattr(s,t[1]):
 					try:
-						if t[1]=="name" and globals.prefs.demojify==True or t[1]=="text" and globals.prefs.demojify_tweet==True:
+						if t[1]=="name" and globals.prefs.demojify or t[1]=="text" and globals.prefs.demojify_tweet:
 							deEmojify=True
 						else:
 							deEmojify=False
-						if deEmojify==True:
+						if deEmojify:
 							demojied=demojify(getattr(s,t[1]))
 							if demojied=="" and t[1]=="name":
 								template=template.replace("$"+t[1]+"$",getattr(s,"screen_name"))
@@ -170,7 +170,7 @@ def message_template_to_string(s):
 		s2["sender"]=lookup_user(s.message_create['sender_id'])
 	if "recipient" not in s2:
 		s2["recipient"]=lookup_user(s.message_create['target']['recipient_id'])
-	if globals.prefs.demojify==True:
+	if globals.prefs.demojify:
 		if s2['sender']!=None:
 			s2['sender'].name=demojify(s2['sender'].name)
 			if s2['sender'].name=="":
@@ -212,7 +212,7 @@ def message_template_to_string(s):
 
 				elif o in s.message_create['message_data'] and p in s.message_create['message_data'][o]:
 					try:
-						if t[1]=="text" and globals.prefs.demojify_tweet==True:
+						if t[1]=="text" and globals.prefs.demojify_tweet:
 							demojified=demojify(s.message_create["message_data"][o][p])
 							template=template.replace("$"+t[1]+"$",demojified)
 						else:
@@ -233,7 +233,7 @@ def message_template_to_string(s):
 						print(e)
 				elif t[1] in s.message_create['message_data']:
 					try:
-						if t[1]=="text" and globals.prefs.demojify_tweet==True:
+						if t[1]=="text" and globals.prefs.demojify_tweet:
 							demojified=demojify(s.message_create["message_data"][t[1]])
 							template=template.replace("$"+t[1]+"$",demojified)
 						else:
@@ -286,7 +286,7 @@ def parse_date(date,convert=True):
 		tz=time.altzone
 	else:
 		tz=time.timezone
-	if convert==True:
+	if convert:
 		try:
 			date+=datetime.timedelta(seconds=0-tz)
 		except:
@@ -358,7 +358,7 @@ def lookup_user_name(account,name,use_api=True):
 	for i in globals.users:
 		if i.screen_name.lower()==name.lower():
 			return i
-	if use_api==False:
+	if not use_api:
 		return -1
 	try:
 		user=account.api.lookup_users(screen_names=[name])[0]
@@ -378,7 +378,7 @@ def get_user_objects_in_tweet(account,status,exclude_self=False,exclude_orig=Fal
 		users.append(lookup_user(status.message_create['sender_id']))
 		users.append(lookup_user(status.message_create['target']['recipient_id']))
 		return users
-	if status.user not in users and exclude_orig==False:
+	if status.user not in users and not exclude_orig:
 		users.append(status.user)
 	if hasattr(status,"quoted_status")!=False and status.quoted_status.user not in users:
 		users.append(status.quoted_status.user)
@@ -387,13 +387,13 @@ def get_user_objects_in_tweet(account,status,exclude_self=False,exclude_orig=Fal
 	if hasattr(status,"entities") and "user_mentions" in status.entities:
 		weew=status.entities['user_mentions']
 		for i in range(0,len(weew)):
-			if (account.me.screen_name!=weew[i]['screen_name'] and exclude_self==True or exclude_self==False):
+			if (account.me.screen_name!=weew[i]['screen_name'] and exclude_self or not exclude_self):
 				username=weew[i]['screen_name']
 				un=lookup_user_name(account,username)
 				if un!=-1:
 					users.append(un)
 	for i in users:
-		if i.id==account.me.id and exclude_self==True:
+		if i.id==account.me.id and exclude_self:
 			users.remove(i)
 
 	return users
@@ -473,7 +473,7 @@ def cfu(silent=True):
 				else:
 					webbrowser.open("http://masonasons.me/softs/Quinter.zip")
 		else:
-			if silent==False:
+			if not silent:
 				alert("No updates available! The latest version of the program is "+latest,"No update available")
 	except:
 		pass

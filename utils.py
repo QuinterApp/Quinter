@@ -135,7 +135,7 @@ def template_to_string(s,template=""):
 						try:
 							f1=getattr(s,o)
 							template=template.replace("$"+t[1]+"$",str(getattr(f1,p)))
-						except exception as e:
+						except Exception as e:
 							print(e)
 
 			else:
@@ -194,7 +194,7 @@ def message_template_to_string(s):
 				if o in s2 and type(s2[o])==dict and p in s2[o]:
 					try:
 						template=template.replace("$"+t[1]+"$",s2[o][p])
-					except exception as e:
+					except Exception as e:
 						print(e)
 
 				elif o in s2 and hasattr(s2[o],p):

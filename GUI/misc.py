@@ -39,7 +39,7 @@ def url_chooser(account,status):
 		urlList=utils.find_urls_in_text(status.message_create['message_data']['text'])
 	else:
 		urlList = utils.find_urls_in_text(status.text)
-	if len(urlList) == 1:
+	if len(urlList) == 1 and globals.prefs.autoOpenSingleURL:
 		utils.openURL(urlList[0])
 	else:
 		chooser.chooser(account,title,prompt,urlList,type)

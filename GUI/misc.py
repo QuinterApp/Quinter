@@ -178,8 +178,8 @@ def not_following_me(account):
 		if account.me.friends_count>account.me.followers_count:
 			calls=math.ceil(account.me.friends_count/200)
 		else:
-			calls=ceil(account.me.followers_count/200)
-		utils.alert("Your set number of user API calls don't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible. You would need to perform "+str(calls)+" calls for this analysis to work.","Error")
+			calls=math.ceil(account.me.followers_count/200)
+		utils.alert("Your set number of user API calls doesn't allow for this analysis. This means that you have more followers or friends than the API calls would return, thus making this analysis impossible. You would need to perform "+str(calls)+" calls for this analysis to work.","Error")
 		return
 	flw=view.UserViewGui(account,account.not_following_me(),"Users not following me")
 	flw.Show()

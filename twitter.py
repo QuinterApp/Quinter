@@ -12,6 +12,7 @@ from GUI.ask import *
 import webbrowser
 import platform
 import os
+import sys
 
 import globals
 import sound

@@ -30,6 +30,9 @@ class general(wx.Panel, wx.Dialog):
 		self.wrap=wx.CheckBox(self, -1, "Word wrap in text fields")
 		self.main_box.Add(self.wrap, 0, wx.ALL, 10)
 		self.wrap.SetValue(globals.prefs.wrap)
+		self.autoOpenSingleURL=wx.CheckBox(self, -1, "when getting URLs from a tweet, automatically open the first URL if it is the only one")
+		self.main_box.Add(self.autoOpenSingleURL, 0, wx.ALL, 10)
+		self.autoOpenSingleURL.SetValue(globals.prefs.autoOpenSingleURL)
 
 
 class templates(wx.Panel, wx.Dialog):
@@ -167,6 +170,7 @@ class OptionsGui(wx.Dialog):
 		globals.prefs.messageTemplate=self.templates.messageTemplate.GetValue()
 		globals.prefs.copyTemplate=self.templates.copyTemplate.GetValue()
 		globals.prefs.userTemplate=self.templates.userTemplate.GetValue()
+		globals.prefs.autoOpenSingleURL=self.general.autoOpenSingleURL.GetValue()
 		self.Destroy()
 		if reverse==True:
 			timeline.reverse()

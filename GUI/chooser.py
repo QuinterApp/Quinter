@@ -8,6 +8,12 @@ import platform
 from . import lists, main, misc, view
 
 class ChooseGui(wx.Dialog):
+	
+	#constants for the types we might need to handle
+	TYPE_LIST = "list"
+	TYPE_URL="url"
+	TYPE_PROFILE = "profile"
+
 	def __init__(self,account,title="Choose",text="Choose a thing",list=[],type=""):
 		self.account=account
 		self.type=type
@@ -35,15 +41,12 @@ class ChooseGui(wx.Dialog):
 	def OK(self, event):
 		self.returnvalue=self.chooser.GetValue().strip("@")
 		self.Destroy()
-		if self.type=="profile":
+		if self.type==self.TYPE_PROFILE:
 			user=view.UserViewGui(self.account,[utils.lookup_user_name(self.account,self.returnvalue)],self.returnvalue+"'s profile")
 			user.Show()
-		if self.type=="url":
-			if platform.system()!="Darwin":
-				webbrowser.open(self.returnvalue)
-			else:
-				os.system("open "+self.returnvalue)
-		if self.type=="list":
+		elif self.type==self.TYPE_URL:
+			utils.openURL(self.returnvalue)
+		elif self.type==self.TYPE_LIST:
 			l=lists.ListsGui(self.account,utils.lookup_user_name(self.account,self.returnvalue))
 			l.Show()
 		if self.type=="listr":

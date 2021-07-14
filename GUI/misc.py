@@ -32,10 +32,17 @@ def user_profile(account,status):
 	chooser.chooser(account,"User Profile","Choose user profile",u2,"profile")
 
 def url_chooser(account,status):
+	title="Open URL"
+	prompt="Select a URL?"
+	type=chooser.ChooseGui.TYPE_URL
 	if hasattr(status,"message_create"):
-		chooser.chooser(account,"Open URL","Select a URL?",utils.find_urls_in_text(status.message_create['message_data']['text']),"url")
+		urlList=utils.find_urls_in_text(status.message_create['message_data']['text'])
 	else:
-		chooser.chooser(account,"Open URL","Select a URL?",utils.find_urls_in_text(status.text),"url")
+		urlList = utils.find_urls_in_text(status.text)
+	if len(urlList) == 1 and globals.prefs.autoOpenSingleURL:
+		utils.openURL(urlList[0])
+	else:
+		chooser.chooser(account,title,prompt,urlList,type)
 
 def follow(account,status):
 	u=utils.get_user_objects_in_tweet(account,status)

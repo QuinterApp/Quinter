@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Quinter</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Quinter</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#what-is-quinter"><span class="toc-section-number">1</span> What is Quinter?</a></li>
+<li><a href="#interfaces"><span class="toc-section-number">2</span> Interfaces</a></li>
+<li><a href="#keys."><span class="toc-section-number">3</span> Keys.</a>
+<ul>
+<li><a href="#gui"><span class="toc-section-number">3.1</span> GUI</a></li>
+<li><a href="#invisible"><span class="toc-section-number">3.2</span> Invisible:</a></li>
+</ul></li>
+<li><a href="#templates."><span class="toc-section-number">4</span> Templates.</a>
+<ul>
+<li><a href="#tweets-retweets-and-quotes."><span class="toc-section-number">4.1</span> Tweets: , retweets, and quotes.</a></li>
+<li><a href="#direct-messages"><span class="toc-section-number">4.2</span> Direct Messages:</a></li>
+<li><a href="#users"><span class="toc-section-number">4.3</span> Users</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>Welcome to Quinter!</p>
+<h1 data-number="1" id="what-is-quinter"><span class="header-section-number">1</span> What is Quinter?</h1>
+<p>Quinter is a fully accessible, easy-to-use, light-weight Twitter client.</p>
+<h1 data-number="2" id="interfaces"><span class="header-section-number">2</span> Interfaces</h1>
+<p>Quinter has two interfaces. GUI and invisible. Invisible allows you to control Quinter from anywhere on your computer. This is disabled by default, but can be easily enabled in settings. GUI allows you to control Quinter like any other application, with buttons, lists, menus, etc.</p>
+<h1 data-number="3" id="keys."><span class="header-section-number">3</span> Keys.</h1>
+<h2 data-number="3.1" id="gui"><span class="header-section-number">3.1</span> GUI</h2>
+<p>You can find out what keys perform what actions by reading through all of the menu options. For example. Reply (Control+R) or command+r on mac.</p>
+<h2 data-number="3.2" id="invisible"><span class="header-section-number">3.2</span> Invisible:</h2>
+<p>Here are the default keys for the invisible interface on Windows only, as it does not work on Mac. These keys can be easily remapped by editing keymap.keymap.</p>
+<ul>
+<li>Control+Windows+Shift+T: Show or hide the window. Note: This works even if invisible interface is not enabled.</li>
+<li>Control+Windows+T: Send a tweet.</li>
+<li>Alt+Windows+left arrow: Previous timeline</li>
+<li>Alt+Windows+right Arrow: Next Timeline.</li>
+<li>Alt+Windows+Up Arrow: Previous Buffer item.</li>
+<li>Alt+Windows+Down Arrow: Next buffer item.</li>
+<li>Control+Windows+r: Reply to a tweet.</li>
+<li>Control+Windows+Shift+r: Send a retweet.</li>
+<li>Alt+Windows+L: Like or unlike a tweet.</li>
+<li>Alt+Windows+Q: Quote a Tweet.</li>
+<li>Alt+Windows+Control+D: Send a direct message.</li>
+<li>Alt+Windows+C: Open a conversation.</li>
+<li>Alt+Windows+V: Open the Tweet Viewer</li>
+<li>Alt+Windows+Control+Up Arrow: Increase volume.</li>
+<li>Alt+Windows+Control+Down Arrow: Turn down the volume.</li>
+<li>Alt+Windows+Enter: Open a URL</li>
+<li>shift+windows+alt+enter: Play audio in tweet.</li>
+<li>control+windows+alt+enter: Play audio in tweet using external media player. Note: You must set the media player up in the options dialog first.</li>
+<li>Alt+Windows+Semi Colon: Speak a brief profile overview.</li>
+<li>Alt+Windows+Shift+Semi Colon: Speak what a tweet is in reply to.</li>
+<li>Alt+Windows+Page Up: Load previous items.</li>
+<li>Alt+Windows+U: Open a user’s timeline</li>
+<li>Alt+Windows+Shift+U: Open a user’s profile.</li>
+<li>Alt+Windows+Tick: Destroy a timeline.</li>
+<li>Alt+Windows+Control+U: Refresh.</li>
+<li>Alt+Windows+Home: Go to the top of the buffer.</li>
+<li>Alt+Windows+End: Go to the end of the buffer.</li>
+<li>Alt+Windows+Delete: Delete a tweet.</li>
+<li>Alt+Windows+Shift+Q: Exit the program.</li>
+<li>Alt+Windows+Left Bracket: View followers.</li>
+<li>Alt+Windows+Right bracket: View Friends.</li>
+<li>alt+windows+o: Options</li>
+<li>control+alt+windows+o: account Options</li>
+<li>alt+windows+shift+left: previous tweet from same user</li>
+<li>alt+windows+shift+right: next tweet from same user</li>
+<li>alt+windows+shift+up: previous tweet in thread</li>
+<li>alt+windows+shift+down: next tweet in thread</li>
+<li>Control+Windows+Shift+C: Copy the last tweet to the clipboard.</li>
+<li>alt+windows+a: Add user to a list</li>
+<li>alt+windows+shift+a: Remove user from a list.</li>
+<li>alt+windows+control+l: View your lists.</li>
+<li>alt+windows+slash: Perform a twitter search.</li>
+<li>Control+Windows+A: Open the account manager.</li>
+<li>Alt+windows+space: Repeat currently focused item.</li>
+<li>Alt+windows+control+a: Speak the current account.</li>
+<li>alt + windows + control + shift + enter: open URL to tweet in browser.</li>
+<li>alt + windows + e: Toggle autoread for current timeline.</li>
+<li>alt + windows + M: Toggle mute for current timeline.</li>
+</ul>
+<h1 data-number="4" id="templates."><span class="header-section-number">4</span> Templates.</h1>
+<p>Quinter supports a template system, allowing you to choose what information you want shown when viewing tweets, direct messages, retweets, etc. Each bit of information goes between two dollar signs ($), and you can have other symbols outside of the dollar signs. The possible objects are as follows:</p>
+<h2 data-number="4.1" id="tweets-retweets-and-quotes."><span class="header-section-number">4.1</span> Tweets: , retweets, and quotes.</h2>
+<ul>
+<li>user.screen_name: The <span class="citation" data-cites="HANDLE">@HANDLE</span> of the user.</li>
+<li>user.name: The display name of the user.</li>
+<li>text: The text of the tweet.</li>
+<li>created_at: The timestamp of when the item was created.</li>
+<li>source: The client it was sent from.</li>
+<li>retweet_count: The number of retweets.</li>
+<li>favorite_count: The likes count</li>
+<li>possibly_sensitive: Is this tweet marked as possibly containing sensative content?</li>
+<li>lang: The language of the Tweet</li>
+</ul>
+<h2 data-number="4.2" id="direct-messages"><span class="header-section-number">4.2</span> Direct Messages:</h2>
+<ul>
+<li>sender.screen_name: The <span class="citation" data-cites="HANDLE">@HANDLE</span> of the user that sent the message.</li>
+<li>sender.name: The display name of the user that sent the message.</li>
+<li>recipient.screen_name: The <span class="citation" data-cites="HANDLE">@HANDLE</span> of the user the message was sent to.</li>
+<li>recipient.name: The display name of the user that received the message.</li>
+<li>text: The text of the message.</li>
+<li>created_at: The timestamp of when the item was created.</li>
+</ul>
+<h2 data-number="4.3" id="users"><span class="header-section-number">4.3</span> Users</h2>
+<ul>
+<li>name: The display name of the user.</li>
+<li>screen_name: the <span class="citation" data-cites="HANDLE">@HANDLE</span> of the user</li>
+<li>followers_count: The amount of followers the user has.</li>
+<li>friends_count: The number of friends the user has.</li>
+<li>statuses_count: The number of tweets sent by the user.</li>
+<li>description: The user’s bio.</li>
+</ul>
+<p>Enjoy!</p>
+</body>
+</html>

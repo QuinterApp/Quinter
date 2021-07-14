@@ -1,6 +1,7 @@
 0.60
 Adds an option to automatically open URL's if there is only one (Thanks Alex Hall for implementing!)
 Adds alt S to open the user menu (Thanks Alex Hall for suggesting!)
+The readme has been completely rewritten. It's still missing some information, but you'll have to let us know what you think.
 
 0.59
 Fixes list manager unable to properly load with no lists.

@@ -103,6 +103,65 @@ Quinter supports a template system, allowing you to choose what information you 
 * statuses_count: The number of tweets sent by the user.
 * description: The user's bio.
 
+## Options
 
+Quinter has two different options dialogs. One is for global settings that apply across the hole app. The other is for the currently selected account.
+
+### Global options
+
+This dialog is divided into multiple tabs. They are as follows.
+
+* General: General options, such as ask before dismissing timelines.
+* Templates: Template settings.
+* Advanced: Options that are exparamental, or could possibly break the app if not used propperly.
+
+#### General
+
+* Ask before dismissing timelines: If checked, this will show a warning message when destroying timelines.
+* Play a sound when a tweet contains audio that is playable by either the client or an external media player: If checked, this option will make Quinter make a sound if you come across a tweet with playable media.
+* Play a sound when you navigate to a timeline that may have new items: This option will play a sound if a timeline you navigate to has items that might be new (i.e. you're not at the edge of the timeline).
+* Remove emojis and other unicode characters from display names: Tired of people with 50 emojis in their names? Check this box, and suffer no more! If the user in questoin has only emojis, the screen name will show instead.
+* Remove emojis and other unicode characters from tweet text: This option is similar to the username one, but it works with tweet text.
+* Reverse timelines (newest on bottom): This option puts the newest tweets at the bottom, rather than at the top.
+* Word wrap in text fields: If checked, long lines will wrap onto new lines in any text field, including the new tweet dialog.
+* when getting URLs from a tweet, automatically open the first URL if it is the only one : If a tweet contains only one URL, pressing the open URL command will open it by default if this is checked.
+
+#### templates.
+
+* Tweet template: Customizehow standard tweets and replies are displayed.
+* Quote template: Customize how quotes are displayed.
+* Retweet template: Customize how your retweets are shown.
+* Copy template: Customize what data gets coppied when you copy a tweet to your clipboard.
+* Direct message template: Customize how your DM's are shown.
+* User template: Customize what info is shown in user summaries.
+
+#### Advanced
+
+* Enable invisible interface (exparimental): Enables the global hotkeys.
+* Sync invisible interface with UI (uncheck for reduced lag in invisible interface): If unchecked, this optoin aims to way improve performance in the invisible interface.
+* Repeat items at edges of invisible interface: If this is checked, when you hit an edge in the invisible interface, it will repeat.
+* Speak position information when navigating between timelines of invisible interface and switching timelines: If checked, you will be told how far down a timeline you are when navigating to it.
+* Update time (in minutes): This changes how frequently the API tries to pull for new tweets.
+* Max API calls when fetching users in user viewer: This changes how many followers and friends you can pull when viewing them. One request = 200 followers/friends.
+* Number of tweets to fetch per call (Maximum is 200): Changes how many tweets you pull per request (mainly noticeable on startup).
+* Enable streaming for home, mentions, and list timelines (This is very experimental! Requires restart to disable): Enables very, very exparamental and breaky streaming API support.
+* External media player. You can choose your media player of choice here.
+
+### Account options.
+
+This dialog doesn't currently contain much, and currently only contains the following tabs:
+
+* General: General options.
+
+#### General.
+
+* Soundpacks: Let's you choose your soundpack.
+* Sound pan: This allows you to pan account-specific sounds to a different position in the stereo field, so you don't have to use different sound packs for different accounts.
+* Tweet Footer (optional): This allows you to automatically append some text to the end of your tweets. Like a hashtag if tweeting about an event.
+
+## Project links.
+
+[Source code](http://github.com/masonasons/quinter)
+[Main website](http://masonasons.me/pages/quinter.php)
 
 Enjoy!

@@ -167,6 +167,20 @@
 <li><a href="#direct-messages"><span class="toc-section-number">4.2</span> Direct Messages:</a></li>
 <li><a href="#users"><span class="toc-section-number">4.3</span> Users</a></li>
 </ul></li>
+<li><a href="#options"><span class="toc-section-number">5</span> Options</a>
+<ul>
+<li><a href="#global-options"><span class="toc-section-number">5.1</span> Global options</a>
+<ul>
+<li><a href="#general"><span class="toc-section-number">5.1.1</span> General</a></li>
+<li><a href="#templates.-1"><span class="toc-section-number">5.1.2</span> templates.</a></li>
+<li><a href="#advanced"><span class="toc-section-number">5.1.3</span> Advanced</a></li>
+</ul></li>
+<li><a href="#account-options."><span class="toc-section-number">5.2</span> Account options.</a>
+<ul>
+<li><a href="#general."><span class="toc-section-number">5.2.1</span> General.</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#project-links."><span class="toc-section-number">6</span> Project links.</a></li>
 </ul>
 </nav>
 <p>Welcome to Quinter!</p>
@@ -261,6 +275,60 @@
 <li>statuses_count: The number of tweets sent by the user.</li>
 <li>description: The user’s bio.</li>
 </ul>
+<h1 data-number="5" id="options"><span class="header-section-number">5</span> Options</h1>
+<p>Quinter has two different options dialogs. One is for global settings that apply across the hole app. The other is for the currently selected account.</p>
+<h2 data-number="5.1" id="global-options"><span class="header-section-number">5.1</span> Global options</h2>
+<p>This dialog is divided into multiple tabs. They are as follows.</p>
+<ul>
+<li>General: General options, such as ask before dismissing timelines.</li>
+<li>Templates: Template settings.</li>
+<li>Advanced: Options that are exparamental, or could possibly break the app if not used propperly.</li>
+</ul>
+<h3 data-number="5.1.1" id="general"><span class="header-section-number">5.1.1</span> General</h3>
+<ul>
+<li>Ask before dismissing timelines: If checked, this will show a warning message when destroying timelines.</li>
+<li>Play a sound when a tweet contains audio that is playable by either the client or an external media player: If checked, this option will make Quinter make a sound if you come across a tweet with playable media.</li>
+<li>Play a sound when you navigate to a timeline that may have new items: This option will play a sound if a timeline you navigate to has items that might be new (i.e. you’re not at the edge of the timeline).</li>
+<li>Remove emojis and other unicode characters from display names: Tired of people with 50 emojis in their names? Check this box, and suffer no more! If the user in questoin has only emojis, the screen name will show instead.</li>
+<li>Remove emojis and other unicode characters from tweet text: This option is similar to the username one, but it works with tweet text.</li>
+<li>Reverse timelines (newest on bottom): This option puts the newest tweets at the bottom, rather than at the top.</li>
+<li>Word wrap in text fields: If checked, long lines will wrap onto new lines in any text field, including the new tweet dialog.</li>
+<li>when getting URLs from a tweet, automatically open the first URL if it is the only one : If a tweet contains only one URL, pressing the open URL command will open it by default if this is checked.</li>
+</ul>
+<h3 data-number="5.1.2" id="templates.-1"><span class="header-section-number">5.1.2</span> templates.</h3>
+<ul>
+<li>Tweet template: Customizehow standard tweets and replies are displayed.</li>
+<li>Quote template: Customize how quotes are displayed.</li>
+<li>Retweet template: Customize how your retweets are shown.</li>
+<li>Copy template: Customize what data gets coppied when you copy a tweet to your clipboard.</li>
+<li>Direct message template: Customize how your DM’s are shown.</li>
+<li>User template: Customize what info is shown in user summaries.</li>
+</ul>
+<h3 data-number="5.1.3" id="advanced"><span class="header-section-number">5.1.3</span> Advanced</h3>
+<ul>
+<li>Enable invisible interface (exparimental): Enables the global hotkeys.</li>
+<li>Sync invisible interface with UI (uncheck for reduced lag in invisible interface): If unchecked, this optoin aims to way improve performance in the invisible interface.</li>
+<li>Repeat items at edges of invisible interface: If this is checked, when you hit an edge in the invisible interface, it will repeat.</li>
+<li>Speak position information when navigating between timelines of invisible interface and switching timelines: If checked, you will be told how far down a timeline you are when navigating to it.</li>
+<li>Update time (in minutes): This changes how frequently the API tries to pull for new tweets.</li>
+<li>Max API calls when fetching users in user viewer: This changes how many followers and friends you can pull when viewing them. One request = 200 followers/friends.</li>
+<li>Number of tweets to fetch per call (Maximum is 200): Changes how many tweets you pull per request (mainly noticeable on startup).</li>
+<li>Enable streaming for home, mentions, and list timelines (This is very experimental! Requires restart to disable): Enables very, very exparamental and breaky streaming API support.</li>
+<li>External media player. You can choose your media player of choice here.</li>
+</ul>
+<h2 data-number="5.2" id="account-options."><span class="header-section-number">5.2</span> Account options.</h2>
+<p>This dialog doesn’t currently contain much, and currently only contains the following tabs:</p>
+<ul>
+<li>General: General options.</li>
+</ul>
+<h3 data-number="5.2.1" id="general."><span class="header-section-number">5.2.1</span> General.</h3>
+<ul>
+<li>Soundpacks: Let’s you choose your soundpack.</li>
+<li>Sound pan: This allows you to pan account-specific sounds to a different position in the stereo field, so you don’t have to use different sound packs for different accounts.</li>
+<li>Tweet Footer (optional): This allows you to automatically append some text to the end of your tweets. Like a hashtag if tweeting about an event.</li>
+</ul>
+<h1 data-number="6" id="project-links."><span class="header-section-number">6</span> Project links.</h1>
+<p><a href="http://github.com/masonasons/quinter">Source code</a> <a href="http://masonasons.me/pages/quinter.php">Main website</a></p>
 <p>Enjoy!</p>
 </body>
 </html>

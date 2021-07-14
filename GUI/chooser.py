@@ -10,9 +10,17 @@ from . import lists, main, misc, view
 class ChooseGui(wx.Dialog):
 	
 	#constants for the types we might need to handle
+	TYPE_BLOCK="block"
+	TYPE_FOLLOW="follow"
 	TYPE_LIST = "list"
-	TYPE_URL="url"
+	TYPE_LIST_R="listr"
+	TYPE_MUTE="mute"
 	TYPE_PROFILE = "profile"
+	TYPE_UNBLOCK="unblock"
+	TYPE_UNFOLLOW="unfollow"
+	TYPE_UNMUTE="unmute"
+	TYPE_URL="url"
+	TYPE_USER_TIMELINE="userTimeline"
 
 	def __init__(self,account,title="Choose",text="Choose a thing",list=[],type=""):
 		self.account=account
@@ -49,28 +57,28 @@ class ChooseGui(wx.Dialog):
 		elif self.type==self.TYPE_LIST:
 			l=lists.ListsGui(self.account,utils.lookup_user_name(self.account,self.returnvalue))
 			l.Show()
-		if self.type=="listr":
+		elif self.type==self.TYPE_LIST_R:
 			l=lists.ListsGui(self.account,utils.lookup_user_name(self.account,self.returnvalue),False)
 			l.Show()
-		if self.type=="follow":
+		elif self.type==self.TYPE_FOLLOW:
 			misc.follow_user(self.account,self.returnvalue)
-		if self.type=="unfollow":
+		elif self.type==self.TYPE_UNFOLLOW:
 			misc.unfollow_user(self.account,self.returnvalue)
-		if self.type=="block":
+		elif self.type==self.TYPE_BLOCK:
 			user=self.account.block(self.returnvalue)
-		if self.type=="unblock":
+		elif self.type==self.TYPE_UNBLOCK:
 			user=self.account.unblock(self.returnvalue)
-		if self.type=="mute":
+		elif self.type==self.TYPE_MUTE:
 			try:
 				user=self.account.api.create_mute(self.returnvalue)
 			except TweepError as e:
 				utils.handle_error(e,"Mute")
-		if self.type=="unmute":
+		elif self.type==self.TYPE_UNMUTE:
 			try:
 				user=self.account.api.destroy_mute(self.returnvalue)
 			except TweepError as e:
 				utils.handle_error(e,"Unmute")
-		if self.type=="usertimeline":
+		elif self.type==self.TYPE_USER_TIMELINE:
 			misc.user_timeline_user(self.account,self.returnvalue)
 
 	def OnClose(self, event):

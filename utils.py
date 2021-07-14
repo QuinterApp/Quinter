@@ -12,6 +12,7 @@ import requests
 import webbrowser
 import application
 import sound
+import os
 
 url_re=re.compile(r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?]))")
 url_re2=re.compile("(?:\w+://|www\.)[^ ,.?!#%=+][^ ]*")
@@ -134,7 +135,7 @@ def template_to_string(s,template=""):
 						try:
 							f1=getattr(s,o)
 							template=template.replace("$"+t[1]+"$",str(getattr(f1,p)))
-						except exception as e:
+						except Exception as e:
 							print(e)
 
 			else:
@@ -193,7 +194,7 @@ def message_template_to_string(s):
 				if o in s2 and type(s2[o])==dict and p in s2[o]:
 					try:
 						template=template.replace("$"+t[1]+"$",s2[o][p])
-					except exception as e:
+					except Exception as e:
 						print(e)
 
 				elif o in s2 and hasattr(s2[o],p):

@@ -78,7 +78,7 @@ def  load():
 	prefs.ask_dismiss=prefs.get("ask_dismiss",True)
 	prefs.reversed=prefs.get("reversed",False)
 	prefs.window_shown=prefs.get("window_shown",True)
-	prefs.auto_open_single_url=prefs.get("auto_open_single_url", False)
+	prefs.autoOpenSingleURL=prefs.get("autoOpenSingleURL", False)
 	prefs.media_player=prefs.get("media_player","")
 	prefs.earcon_audio=prefs.get("earcon_audio",True)
 	prefs.earcon_top=prefs.get("earcon_top",False)

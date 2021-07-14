@@ -112,7 +112,7 @@ class MainGui(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.OnNotFollowing, m_not_following)
 		m_not_following_me=menu7.Append(-1, "View users who I follow that do not follow me", "conversation")
 		self.Bind(wx.EVT_MENU, self.OnNotFollowingMe, m_not_following_me)
-		self.menuBar.Append(menu7, "Users")
+		self.menuBar.Append(menu7, "U&sers")
 		menu3 = wx.Menu()
 		m_refresh = menu3.Append(-1, "Refresh timeline (F5)", "refresh")
 		self.Bind(wx.EVT_MENU, self.onRefresh, m_refresh)

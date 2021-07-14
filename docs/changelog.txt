@@ -1,3 +1,7 @@
+0.60
+Adds an option to automatically open URL's if there is only one (Thanks Alex Hall for implementing!)
+Adds alt S to open the user menu (Thanks Alex Hall for suggesting!)
+
 0.59
 Fixes list manager unable to properly load with no lists.
 If your account API call number could produce false positives, you're now alerted.

@@ -426,6 +426,7 @@ class MainGui(wx.Frame):
 
 	def OnCleanUserDb(self, event=None):
 		globals.clean_users()
+		globals.save-users()
 
 	def on_list2_change(self, event):
 		globals.currentAccount.currentTimeline.index=self.list2.GetSelection()

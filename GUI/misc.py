@@ -335,7 +335,7 @@ def play_external(status):
 		urls=utils.find_urls_in_tweet(status)
 	if globals.prefs.media_player!="":
 		if len(urls)>0:
-			speak.speak("Opening media in external player...")
+			speak.speak("Opening media...")
 			audio=sound.get_media_urls(urls)[0]
 			if platform.system()!="Darwin":
 				subprocess.run([globals.prefs.media_player, audio['url']])

@@ -140,9 +140,7 @@ class MainGui(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.OnCloseTimeline, self.m_close_timeline)
 		self.menuBar.Append(menu3, "Time&line")
 		menu4 = wx.Menu()
-		m_play = menu4.Append(-1, "Play audio ("+ctrl+"+enter)", "play")
-		self.Bind(wx.EVT_MENU, self.OnPlay, m_play)
-		m_play_external = menu4.Append(-1, "Play media in external media player ("+ctrl+"+shift+enter)", "play_external")
+		m_play_external = menu4.Append(-1, "Play media ("+ctrl+"+enter)", "play_external")
 		self.Bind(wx.EVT_MENU, self.OnPlayExternal, m_play_external)
 		m_volup = menu4.Append(-1, "Volume up (alt/option+up)", "volup")
 		self.Bind(wx.EVT_MENU, self.OnVolup, m_volup)
@@ -209,8 +207,7 @@ class MainGui(wx.Frame):
 		accel.append((wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('i'), m_remove_from_list.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord("c"), m_copy.GetId()))
 		accel.append((wx.ACCEL_NORMAL, wx.WXK_RETURN, m_view.GetId()))
-		accel.append((wx.ACCEL_CTRL, wx.WXK_RETURN, m_play.GetId()))
-		accel.append((wx.ACCEL_CTRL|wx.ACCEL_SHIFT, wx.WXK_RETURN, m_play_external.GetId()))
+		accel.append((wx.ACCEL_CTRL, wx.WXK_RETURN, m_play_external.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord('U'), m_user_timeline.GetId()))
 		accel.append((wx.ACCEL_CTRL, ord('/'), m_search.GetId()))
 		accel.append((wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord('/'), m_user_search.GetId()))
@@ -313,9 +310,6 @@ class MainGui(wx.Frame):
 			self.trayicon.on_exit(event,False)
 		self.Destroy()
 		sys.exit()
-
-	def OnPlay(self,event=None):
-		thread=threading.Thread(target=misc.play,args=(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index],)).start()
 
 	def OnPlayExternal(self,event=None):
 		thread=threading.Thread(target=misc.play_external,args=(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index],)).start()
@@ -435,9 +429,7 @@ class MainGui(wx.Frame):
 
 	def on_list2_change(self, event):
 		globals.currentAccount.currentTimeline.index=self.list2.GetSelection()
-		if globals.prefs.earcon_audio==True and len(sound.get_audio_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
-			sound.play(globals.currentAccount,"audio")
-		if globals.prefs.earcon_audio==True and len(sound.get_audio_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))==0 and len(sound.get_media_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
+		if globals.prefs.earcon_audio==True and len(sound.get_media_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
 			sound.play(globals.currentAccount,"media")
 
 	def onRefresh(self,event=None):
@@ -466,16 +458,12 @@ class MainGui(wx.Frame):
 		if globals.prefs.volume<1.0:
 			globals.prefs.volume+=0.1
 			globals.prefs.volume=round(globals.prefs.volume,1)
-			if sound.player!=None:
-				sound.player.volume=globals.prefs.volume
 			sound.play(globals.currentAccount,"volume_changed")
 
 	def OnVoldown(self, event=None):
 		if globals.prefs.volume>0.0:
 			globals.prefs.volume-=0.1
 			globals.prefs.volume=round(globals.prefs.volume,1)
-			if sound.player!=None:
-				sound.player.volume=globals.prefs.volume
 			sound.play(globals.currentAccount,"volume_changed")
 
 	def OnOptions(self, event=None):

@@ -66,9 +66,7 @@ class invisible_interface(object):
 			main.window.list2.SetSelection(globals.currentAccount.currentTimeline.index)
 			main.window.on_list2_change(None)
 		else:
-			if globals.prefs.earcon_audio==True and len(sound.get_audio_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
-				sound.play(globals.currentAccount,"audio")
-			if globals.prefs.earcon_audio==True and len(sound.get_audio_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))==0 and len(sound.get_media_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
+			if globals.prefs.earcon_audio==True and len(sound.get_media_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
 				sound.play(globals.currentAccount,"media")
 		self.speak_item()
 

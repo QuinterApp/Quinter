@@ -167,4 +167,8 @@ This dialog doesn't currently contain much, and currently only contains the foll
 * Sound pan: This allows you to pan account-specific sounds to a different position in the stereo field, so you don't have to use different sound packs for different accounts.
 * Tweet Footer (optional): This allows you to automatically append some text to the end of your tweets. Like a hashtag if tweeting about an event.
 
+## Soundpacks
+
+Quinter supports soundpacks, allowing you to customize Quinter to sound however you like! The official soundpacks repository can be found [here](https://github.com/quinterApp/quinter-soundpacks). To use a soundpack, put the folder containing all the sounds into either the sounds folder in your quinter directory, or in .config/quinter/sounds. Select it from the list in account options, and you're good to go!
+
 Enjoy!

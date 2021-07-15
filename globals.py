@@ -20,7 +20,7 @@ currentAccount=None
 timeline_settings=[]
 def  load():
 	global timeline_settings
-	utils.cfu()
+	threading.Thread(target=utils.cfu).start()
 	global confpath
 	global prefs
 	global users

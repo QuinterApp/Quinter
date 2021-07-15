@@ -471,7 +471,7 @@ def cfu(silent=True):
 					webbrowser.open("http://github.com/QuinterApp/Quinter/releases/"+latest+"/QuinterMac.zip")
 					sys.exit()
 				else:
-					webbrowser.open(http://github.com/QuinterApp/Quinter/releases/"+latest+"/Quinter.zip")
+					webbrowser.open("http://github.com/QuinterApp/Quinter/releases/"+latest+"/Quinter.zip")
 					sys.exit()
 		else:
 			if not silent:

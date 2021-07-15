@@ -2,7 +2,7 @@
 Adds an option to automatically open URL's if there is only one (Thanks Alex Hall for implementing!)
 Adds alt S to open the user menu (Thanks Alex Hall for suggesting!)
 The readme has been completely rewritten. It's still missing some information, but you'll have to let us know what you think.
-Separates out audio playback into external media player called QPlay. This means quite a few things, quicker load times, less RAM usage, etc.
+Separates out audio playback into external media player called QPlay. This means quite a few things, quicker load times, less RAM usage, etc. Note: You may have to set your external media player (now called media player) to QPlay manually if you want to use it. Playback functionality directly in the client has been removed.
 
 0.59
 Fixes list manager unable to properly load with no lists.

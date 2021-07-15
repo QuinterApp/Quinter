@@ -21,4 +21,5 @@ if globals.prefs.window_shown==True:
 	main.window.Show()
 else:
 	speak.speak("Welcome to Quinter! Main window hidden.")
+import utils
 app.MainLoop()

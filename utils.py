@@ -1,3 +1,4 @@
+import zipfile
 import sys
 import html
 import platform
@@ -515,3 +516,30 @@ def openURL(url):
 		webbrowser.open(url)
 	else:
 		os.system(f"open {url}")
+
+def download_file(url):
+	local_filename = url.split('/')[-1]
+	with requests.get(url, stream=True) as r:
+		r.raise_for_status()
+		with open(local_filename, 'wb') as f:
+			for chunk in r.iter_content(chunk_size=8192): 
+				#if chunk: 
+				f.write(chunk)
+	return local_filename
+
+def download_QPlay():
+	latest=json.loads(requests.get("https://api.github.com/repos/QuinterApp/QPlay/releases/latest",{"accept":"application/vnd.github.v3+json"}).content.decode())
+	for i in latest['assets']:
+		if "qplay.zip" in i['name'].lower() and platform.system()=="Windows":
+			try:
+				if os.path.exists("QPlay.exe"):
+					os.remove("QPlay.exe")
+			except:
+				alert("The current version of QPlay could not be removed. Please make sure QPlay is not running and try again.","Error")
+				return
+			filename=download_file(i['browser_download_url'])
+			zip=zipfile.ZipFile(filename)
+			zip.extract("QPlay.exe")
+			zip.close()
+			os.remove(filename)
+			alert("QPlay downloaded and ready to go!","Alert!")

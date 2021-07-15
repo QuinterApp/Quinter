@@ -100,6 +100,10 @@ def  load():
 	load_timeline_settings()
 	for i in range(0,prefs.accounts):
 		add_session()
+	if platform.system()=="Windows" and not os.path.exists("QPlay.exe"):
+		q=utils.question("QPlay","It appears you do not have QPlay. It is not needed unless you plan to play audio (such as twitter videos and youtube URL's) without using your browser. Would you like me to set up QPlay for you? Once you hit yes, you can use Quinter normally until QPlay is ready to go.")
+		if q==1:
+			threading.Thread(target=utils.download_QPlay).start()
 
 def add_session():
 	global accounts

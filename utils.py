@@ -463,16 +463,15 @@ def alert(message, caption = "", parent=None):
 
 def cfu(silent=True):
 	try:
-		latest=requests.get("http://masonasons.me/projects/"+application.shortname+"version.txt",timeout=5).text
-		if application.version<latest:
-			ud=question("Update available: "+latest,"There is an update available. Your version: "+application.version+". Latest version: "+latest+". Do you want to open the direct download link?")
+		latest=json.loads(requests.get("https://api.github.com/repos/QuinterApp/Quinter/releases/latest",{"accept":"application/vnd.github.v3+json"}).content.decode())
+		if application.version<latest['tag_name']:
+			ud=question("Update available: "+latest['tag_name'],"There is an update available. Your version: "+application.version+". Latest version: "+latest['tag_name']+". Description: "+latest['body']+"\r\nDo you want to open the direct download link?")
 			if ud==1:
-				if platform.system()=="Darwin":
-					webbrowser.open("http://github.com/QuinterApp/Quinter/releases/"+latest+"/QuinterMac.zip")
-					sys.exit()
-				else:
-					webbrowser.open("http://github.com/QuinterApp/Quinter/releases/"+latest+"/Quinter.zip")
-					sys.exit()
+				for i in latest['assets']:
+					if "quinter.zip" in i['name'].lower() and platform.system()=="Windows" or "quintermac.zip" in i['name'].lower() and platform.system()=="Darwin":
+						webbrowser.open(i['browser_download_url'])
+						sys.exit()
+			utils.alert("A download for this version could not be found for your platform. Check back soon.","Error")
 		else:
 			if not silent:
 				alert("No updates available! The latest version of the program is "+latest,"No update available")

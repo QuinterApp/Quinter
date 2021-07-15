@@ -79,7 +79,10 @@ def  load():
 	prefs.reversed=prefs.get("reversed",False)
 	prefs.window_shown=prefs.get("window_shown",True)
 	prefs.autoOpenSingleURL=prefs.get("autoOpenSingleURL", False)
-	prefs.media_player=prefs.get("media_player","QPlay.exe")
+	if platform.system()!="Darwin":
+		prefs.media_player=prefs.get("media_player","QPlay.exe")
+	else:
+		prefs.media_player=prefs.get("media_player","/applications/QPlay.app")
 	prefs.earcon_audio=prefs.get("earcon_audio",True)
 	prefs.earcon_top=prefs.get("earcon_top",False)
 	prefs.wrap=prefs.get("wrap",False)

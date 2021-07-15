@@ -474,7 +474,7 @@ def cfu(silent=True):
 			utils.alert("A download for this version could not be found for your platform. Check back soon.","Error")
 		else:
 			if not silent:
-				alert("No updates available! The latest version of the program is "+latest,"No update available")
+				alert("No updates available! The latest version of the program is "+latest['tag_name'],"No update available")
 	except:
 		pass
 

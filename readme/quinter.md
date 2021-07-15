@@ -6,10 +6,12 @@ Welcome to Quinter!
 
 1. [Source code](http://github.com/masonasons/quinter)
 2. [Main website](http://masonasons.me/pages/quinter.php)
+3. [Main Twitter account](https://twitter.com/QuinterApp)
+4. [Developer updates Twitter account](https://twitter.com/DevQuinter)
 
 ## What is Quinter?
 
-Quinter is a fully accessible, easy-to-use, light-weight Twitter client.
+Quinter is a fully accessible, easy-to-use, light-weight Twitter client. It works on both Windows and Mac, and is open sourced, allowing anyone to contribute if they so wish!
 
 ## Interfaces
 

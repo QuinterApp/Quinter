@@ -162,6 +162,8 @@ class MainGui(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.OnPrevTimeline, m_prev_timeline)
 		self.menuBar.Append(menu5, "Navigation")
 		menu6 = wx.Menu()
+		m_readme = menu6.Append(-1, "Readme (F1)", "readme")
+		self.Bind(wx.EVT_MENU, self.OnReadme, m_readme)
 		m_cfu = menu6.Append(-1, "Check for updates", "cfu")
 		self.Bind(wx.EVT_MENU, self.OnCfu, m_cfu)
 		m_stats = menu6.Append(-1, "Stats for nerds", "stats")
@@ -238,6 +240,7 @@ class MainGui(wx.Frame):
 		accel.append((wx.ACCEL_CTRL|wx.ACCEL_SHIFT, ord("L"), m_lists.GetId()))
 		accel.append((wx.ACCEL_NORMAL, wx.WXK_F5, m_refresh.GetId()))
 		accel.append((wx.ACCEL_NORMAL, wx.WXK_DELETE, m_delete.GetId()))
+		accel.append((wx.ACCEL_NORMAL, wx.WXK_F1, m_readme.GetId()))
 		accel_tbl=wx.AcceleratorTable(accel)
 		self.SetAcceleratorTable(accel_tbl)
 		self.panel.Layout()
@@ -276,6 +279,9 @@ class MainGui(wx.Frame):
 				self.on_list_change(None)
 				self.list2.SetSelection(globals.currentAccount.currentTimeline.index)
 				self.on_list2_change(None)
+
+	def OnReadme(self,event=None):
+		webbrowser.open("http://quinterApp.github.io/readme.html")
 
 	def OnRead(self,event=None):
 		globals.currentAccount.currentTimeline.toggle_read()

@@ -4,10 +4,11 @@ Welcome to Quinter!
 
 ## Project links.
 
-1. [Source code](http://github.com/masonasons/quinter)
-2. [Main website](http://masonasons.me/pages/quinter.php)
-3. [Main Twitter account](https://twitter.com/QuinterApp)
-4. [Developer updates Twitter account](https://twitter.com/DevQuinter)
+1. [Source code](http://github.com/quinterapp/quinter)
+2. [Soundpacks repository](http://github.com/quinterapp/quinter-soundpacks)
+3. [Main website](http://masonasons.me/pages/quinter.php)
+4. [Main Twitter account](https://twitter.com/QuinterApp)
+5. [Developer updates Twitter account](https://twitter.com/DevQuinter)
 
 ## What is Quinter?
 

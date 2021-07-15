@@ -2,6 +2,11 @@
 
 Welcome to Quinter!
 
+## Project links.
+
+1. [Source code](http://github.com/masonasons/quinter)
+2. [Main website](http://masonasons.me/pages/quinter.php)
+
 ## What is Quinter?
 
 Quinter is a fully accessible, easy-to-use, light-weight Twitter client.
@@ -158,10 +163,5 @@ This dialog doesn't currently contain much, and currently only contains the foll
 * Soundpacks: Let's you choose your soundpack.
 * Sound pan: This allows you to pan account-specific sounds to a different position in the stereo field, so you don't have to use different sound packs for different accounts.
 * Tweet Footer (optional): This allows you to automatically append some text to the end of your tweets. Like a hashtag if tweeting about an event.
-
-## Project links.
-
-[Source code](http://github.com/masonasons/quinter)
-[Main website](http://masonasons.me/pages/quinter.php)
 
 Enjoy!

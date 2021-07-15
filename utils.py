@@ -468,10 +468,11 @@ def cfu(silent=True):
 			ud=question("Update available: "+latest,"There is an update available. Your version: "+application.version+". Latest version: "+latest+". Do you want to open the direct download link?")
 			if ud==1:
 				if platform.system()=="Darwin":
-					webbrowser.open("http://masonasons.me/softs/QuinterMac.zip")
+					webbrowser.open("http://github.com/QuinterApp/Quinter/releases/"+latest+"/QuinterMac.zip")
 					sys.exit()
 				else:
-					webbrowser.open("http://masonasons.me/softs/Quinter.zip")
+					webbrowser.open(http://github.com/QuinterApp/Quinter/releases/"+latest+"/Quinter.zip")
+					sys.exit()
 		else:
 			if not silent:
 				alert("No updates available! The latest version of the program is "+latest,"No update available")

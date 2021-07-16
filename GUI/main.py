@@ -166,8 +166,9 @@ class MainGui(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.OnReadme, m_readme)
 		m_cfu = menu6.Append(-1, "Check for updates", "cfu")
 		self.Bind(wx.EVT_MENU, self.OnCfu, m_cfu)
-		m_download_QPlay = menu6.Append(-1, "Redownload QPlay", "download_QPlay")
-		self.Bind(wx.EVT_MENU, self.OnDownloadQPlay, m_download_QPlay)
+		if platform.system()=="Windows":
+			m_download_QPlay = menu6.Append(-1, "Redownload QPlay", "download_QPlay")
+			self.Bind(wx.EVT_MENU, self.OnDownloadQPlay, m_download_QPlay)
 		m_stats = menu6.Append(-1, "Stats for nerds", "stats")
 		self.Bind(wx.EVT_MENU, self.OnStats, m_stats)
 		m_errors = menu6.Append(-1, "View API errors", "errors")

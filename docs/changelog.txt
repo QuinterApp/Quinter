@@ -1,3 +1,6 @@
+0.61
+Adds a built-in facility for updating and downloading QPlay directly from within Quinter!
+
 0.60
 Adds an option to automatically open URL's if there is only one (Thanks Alex Hall for implementing!)
 Adds alt S to open the user menu (Thanks Alex Hall for suggesting!)

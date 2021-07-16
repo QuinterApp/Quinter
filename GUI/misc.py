@@ -276,11 +276,11 @@ def previous_from_user(account):
 	user=account.currentTimeline.statuses[account.currentTimeline.index].user
 	newindex2=0
 	for i in account.currentTimeline.statuses:
+		if newindex2>=oldindex:
+			break
 		if i.user.id==user.id:
 			newindex=newindex2
 		newindex2+=1
-		if newindex2>=oldindex:
-			break
 
 	if newindex>-1:
 		account.currentTimeline.index=newindex

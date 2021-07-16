@@ -1,3 +1,4 @@
+import datetime
 import tweepy
 from tweepy import TweepError
 import streaming
@@ -183,6 +184,14 @@ class twitter(object):
 		users=[]
 		for i in friends:
 			if not i in followers:
+				users.append(i)
+		return users
+
+	def havent_tweeted(self):
+		friends=self.friends(self.me.id)
+		users=[]
+		for i in friends:
+			if hasattr(i,"status") and i.status.created_at.year<datetime.datetime.now().year-1:
 				users.append(i)
 		return users
 

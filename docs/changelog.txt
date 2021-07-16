@@ -1,3 +1,6 @@
+0.62
+Adds a new user analysis, users I follow that haven't tweeted in a year. Thanks Simon for the suggestion!
+
 0.61
 Adds a built-in facility for updating and downloading QPlay directly from within Quinter!
 

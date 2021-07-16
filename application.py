@@ -1,4 +1,4 @@
 shortname="quinter"
 name="Quinter"
-version="0.61"
+version="0.62"
 author="Quin and Melody"

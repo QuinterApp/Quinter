@@ -188,6 +188,10 @@ def not_following(account):
 	flw=view.UserViewGui(account,account.not_following(),"users I don't follow")
 	flw.Show()
 
+def havent_tweeted(account):
+	flw=view.UserViewGui(account,account.havent_tweeted(),"users who haven't tweeted recently")
+	flw.Show()
+
 def user_timeline_user(account,username,focus=True):
 	if username in account.prefs.user_timelines and focus==True:
 		utils.alert("You already have a timeline for this user open.","Error")

@@ -112,6 +112,8 @@ class MainGui(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.OnNotFollowing, m_not_following)
 		m_not_following_me=menu7.Append(-1, "View users who I follow that do not follow me", "conversation")
 		self.Bind(wx.EVT_MENU, self.OnNotFollowingMe, m_not_following_me)
+		m_havent_tweeted=menu7.Append(-1, "View users who I follow that haven't tweeted in a year", "conversation")
+		self.Bind(wx.EVT_MENU, self.OnHaventTweeted, m_havent_tweeted)
 		self.menuBar.Append(menu7, "U&sers")
 		menu3 = wx.Menu()
 		m_refresh = menu3.Append(-1, "Refresh timeline (F5)", "refresh")
@@ -419,6 +421,9 @@ class MainGui(wx.Frame):
 
 	def OnNotFollowingMe(self,event=None):
 		misc.not_following_me(globals.currentAccount)
+
+	def OnHaventTweeted(self,event=None):
+		misc.havent_tweeted(globals.currentAccount)
 
 	def refreshList(self):
 		stuffage=globals.currentAccount.currentTimeline.get()

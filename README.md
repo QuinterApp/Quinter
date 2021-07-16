@@ -26,4 +26,3 @@ We ask that pull requests are submitted always, in order to avoid merge conflict
 * View blocked and muted users.
 * add command line arguments for external player
 * Let you customize how much Control+Windows+Page up/down moves you (within reason of course).
-* Fix the problem where empty timelines actually let you somehow scroll through them.

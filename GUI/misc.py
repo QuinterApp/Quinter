@@ -258,6 +258,8 @@ def next_in_thread(account):
 		if newindex>-1:
 			account.currentTimeline.index=newindex
 			main.window.list2.SetSelection(newindex)
+	else:
+		sound.play(account,"boundary")
 
 def previous_in_thread(account):
 	newindex=-1
@@ -265,6 +267,8 @@ def previous_in_thread(account):
 	if newindex>-1:
 		account.currentTimeline.index=newindex
 		main.window.list2.SetSelection(newindex)
+	else:
+		sound.play(account,"boundary")
 
 def previous_from_user(account):
 	newindex=-1
@@ -281,6 +285,8 @@ def previous_from_user(account):
 	if newindex>-1:
 		account.currentTimeline.index=newindex
 		main.window.list2.SetSelection(newindex)
+	else:
+		sound.play(account,"boundary")
 
 def next_from_user(account):
 	newindex=-1
@@ -297,6 +303,8 @@ def next_from_user(account):
 	if newindex>-1:
 		account.currentTimeline.index=newindex
 		main.window.list2.SetSelection(newindex)
+	else:
+		sound.play(account,"boundary")
 
 def delete(account,status):
 	try:

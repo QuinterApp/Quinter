@@ -22,7 +22,7 @@ def user_timeline(account,status):
 	u2=[]
 	for i in u:
 		u2.append(i.screen_name)
-	chooser.chooser(account,"User Timeline","Choose user timeline",u2,"usertimeline")
+	chooser.chooser(account,"User Timeline","Choose user timeline",u2,"userTimeline")
 
 def user_profile(account,status):
 	u=utils.get_user_objects_in_tweet(account,status)

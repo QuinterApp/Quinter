@@ -25,3 +25,4 @@ We ask that pull requests are submitted always, in order to avoid merge conflict
 * Export buffers feature
 * View blocked and muted users.
 * add command line arguments for external player
+* Play the buffer edge sound when going through threads/user-specific tweets and reaching the edge.

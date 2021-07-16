@@ -540,6 +540,7 @@ def download_QPlay():
 			filename=download_file(i['browser_download_url'])
 			zip=zipfile.ZipFile(filename)
 			zip.extract("QPlay.exe")
+			zip.extract("QPlayChangelog.txt")
 			zip.close()
 			os.remove(filename)
 			alert("QPlay downloaded and ready to go!","Alert!")

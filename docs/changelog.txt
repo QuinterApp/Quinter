@@ -1,6 +1,8 @@
 0.62
 Adds a new user analysis, users I follow that haven't tweeted in a year. Thanks Simon for the suggestion!
 Fixes user timelines!
+You now hear the boundery sound if at the edge of a thread or specific user's tweets using the hotkeys.
+You can no longer scroll through empty timelines like they have items in them.
 
 0.61
 Adds a built-in facility for updating and downloading QPlay directly from within Quinter!

@@ -89,7 +89,7 @@ class invisible_interface(object):
 		self.focus_tl(sync)
 
 	def prev_item(self):
-		if globals.currentAccount.currentTimeline.index==0:
+		if globals.currentAccount.currentTimeline.index==0 or len(globals.currentAccount.currentTimeline.statuses)==0:
 			sound.play(globals.currentAccount,"boundary")
 			if globals.prefs.repeat==True:
 				self.speak_item()
@@ -111,7 +111,7 @@ class invisible_interface(object):
 		self.focus_tl_item()
 
 	def next_item(self):
-		if globals.currentAccount.currentTimeline.index==len(globals.currentAccount.currentTimeline.statuses)-1:
+		if globals.currentAccount.currentTimeline.index==len(globals.currentAccount.currentTimeline.statuses)-1 or len(globals.currentAccount.currentTimeline.statuses)==0:
 			sound.play(globals.currentAccount,"boundary")
 			if globals.prefs.repeat==True:
 				self.speak_item()

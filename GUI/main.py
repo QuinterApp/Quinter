@@ -548,7 +548,7 @@ class MainGui(wx.Frame):
 		misc.block(globals.currentAccount,globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])
 
 	def OnUnblock(self, event=None):
-		misc.unblock(globals.current_account,globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])
+		misc.unblock(globals.currentAccount, globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])
 
 	def OnMuteUser(self, event=None):
 		misc.mute(globals.currentAccount,globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])

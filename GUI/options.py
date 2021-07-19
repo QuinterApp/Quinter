@@ -69,7 +69,7 @@ class advanced(wx.Panel, wx.Dialog):
 		super(advanced, self).__init__(parent)
 		self.main_box = wx.BoxSizer(wx.VERTICAL)
 		if platform.system()!="Darwin":
-			self.invisible=wx.CheckBox(self, -1, "Enable invisible interface (Experimental)")
+			self.invisible=wx.CheckBox(self, -1, "Enable invisible interface")
 			self.main_box.Add(self.invisible, 0, wx.ALL, 10)
 			self.invisible.SetValue(globals.prefs.invisible)
 			self.invisible_sync=wx.CheckBox(self, -1, "Sync invisible interface with UI (uncheck for reduced lag in invisible interface)")
@@ -93,7 +93,7 @@ class advanced(wx.Panel, wx.Dialog):
 		self.count = wx.TextCtrl(self, -1, "")
 		self.main_box.Add(self.count, 0, wx.ALL, 10)
 		self.count.AppendText(str(globals.prefs.count))
-		self.streaming=wx.CheckBox(self, -1, "Enable streaming for home, mentions, and list timelines (This is very experimental! Requires restart to disable)")
+		self.streaming=wx.CheckBox(self, -1, "Enable streaming for home, mentions, and list timelines (Requires restart to disable)")
 		self.main_box.Add(self.streaming, 0, wx.ALL, 10)
 		self.streaming.SetValue(globals.prefs.streaming)
 		self.media_player_box=wx.StaticBox(self, -1,"Media Player path")

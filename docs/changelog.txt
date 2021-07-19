@@ -1,3 +1,6 @@
+0.63
+Unblocking is fixed now.
+
 0.62
 Adds a new user analysis, users I follow that haven't tweeted in a year. Thanks Simon for the suggestion!
 Fixes user timelines!

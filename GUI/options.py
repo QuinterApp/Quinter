@@ -128,6 +128,7 @@ class OptionsGui(wx.Dialog):
 
 	def OnOK(self, event):
 		refresh=False
+		globals.prefs.autoOpenSingleURL = self.general.autoOpenSingleURL
 		globals.prefs.ask_dismiss=self.general.ask_dismiss.GetValue()
 		if platform.system()!="Darwin":
 			globals.prefs.invisible=self.advanced.invisible.GetValue()

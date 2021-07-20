@@ -79,6 +79,7 @@ def  load():
 	prefs.reversed=prefs.get("reversed",False)
 	prefs.window_shown=prefs.get("window_shown",True)
 	prefs.autoOpenSingleURL=prefs.get("autoOpenSingleURL", False)
+	prefs.use24HourTime=prefs.get("use24HourTime", False)
 	if platform.system()!="Darwin":
 		prefs.media_player=prefs.get("media_player","QPlay.exe")
 	else:

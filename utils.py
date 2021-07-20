@@ -295,6 +295,9 @@ def parse_date(date,convert=True):
 	returnstring=""
 
 	try:
+		timeFormatString = "%I:%M:%S %p"
+		if globals.prefs.use24HourTime:
+			timeFormatString = "%H:%M:%S"
 		if date.year==ti.year:
 			if date.day==ti.day and date.month==ti.month:
 				returnstring=""
@@ -303,10 +306,7 @@ def parse_date(date,convert=True):
 		else:
 			returnstring=date.strftime("%m/%d/%Y, ")
 
-		if returnstring!="":
-			returnstring+=date.strftime("%I:%M:%S %p")
-		else:
-			returnstring=date.strftime("%I:%M:%S %p")
+		returnstring=date.strftime(timeFormatString)
 	except:
 		pass
 	return returnstring

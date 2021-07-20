@@ -253,7 +253,10 @@ class timeline(object):
 					self.play()
 				globals.prefs.statuses_received+=newitems
 				if speech==True:
-					speak.speak(str(newitems)+" new items.")
+					announcement=f"{newitems} new item"
+					if newitems!=1:
+						announcement+="s"
+					speak.speak(announcement)
 			if self.initial==True:
 				self.initial=False
 #			if globals.currentTimeline==self:

@@ -33,6 +33,9 @@ class general(wx.Panel, wx.Dialog):
 		self.autoOpenSingleURL=wx.CheckBox(self, -1, "when getting URLs from a tweet, automatically open the first URL if it is the only one")
 		self.main_box.Add(self.autoOpenSingleURL, 0, wx.ALL, 10)
 		self.autoOpenSingleURL.SetValue(globals.prefs.autoOpenSingleURL)
+		self.use24HourTime=wx.CheckBox(self, -1, "Use 24-hour time for tweet timestamps")
+		self.main_box.Add(self.use24HourTime, 0, wx.ALL, 10)
+		self.use24HourTime.SetValue(globals.prefs.use24HourTime)
 
 
 class templates(wx.Panel, wx.Dialog):
@@ -128,6 +131,7 @@ class OptionsGui(wx.Dialog):
 
 	def OnOK(self, event):
 		refresh=False
+		globals.prefs.use24HourTime = self.general.use24HourTime.GetValue()
 		globals.prefs.ask_dismiss=self.general.ask_dismiss.GetValue()
 		if platform.system()!="Darwin":
 			globals.prefs.invisible=self.advanced.invisible.GetValue()

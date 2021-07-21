@@ -295,18 +295,20 @@ def parse_date(date,convert=True):
 	returnstring=""
 
 	try:
+		dateFormatString = "%m/%d/%Y"
 		timeFormatString = "%I:%M:%S %p"
 		if globals.prefs.use24HourTime:
 			timeFormatString = "%H:%M:%S"
+		#include the date if the date to be output happened before today, else just use the time
 		if date.year==ti.year:
 			if date.day==ti.day and date.month==ti.month:
 				returnstring=""
 			else:
-				returnstring=date.strftime("%m/%d/%Y, ")
+				returnstring=date.strftime(f"{dateFormatString}, ")
 		else:
-			returnstring=date.strftime("%m/%d/%Y, ")
+			returnstring=date.strftime(f"{dateFormatString}, ")
 
-		returnstring=date.strftime(timeFormatString)
+		returnstring+=date.strftime(timeFormatString)
 	except:
 		pass
 	return returnstring

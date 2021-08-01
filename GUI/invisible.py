@@ -98,12 +98,12 @@ class invisible_interface(object):
 		self.focus_tl_item()
 
 	def prev_item_jump(self):
-		if globals.currentAccount.currentTimeline.index<20:
+		if globals.currentAccount.currentTimeline.index < globals.prefs.move_amount:
 			sound.play(globals.currentAccount,"boundary")
-			if globals.prefs.repeat==True:
+			if globals.prefs.repeat:
 				self.speak_item()
 			return
-		globals.currentAccount.currentTimeline.index-=20
+		globals.currentAccount.currentTimeline.index -= globals.prefs.move_amount
 		self.focus_tl_item()
 
 	def top_item(self):
@@ -120,12 +120,12 @@ class invisible_interface(object):
 		self.focus_tl_item()
 
 	def next_item_jump(self):
-		if globals.currentAccount.currentTimeline.index>=len(globals.currentAccount.currentTimeline.statuses)-20:
+		if globals.currentAccount.currentTimeline.index >= len(globals.currentAccount.currentTimeline.statuses) - globals.prefs.move_amount:
 			sound.play(globals.currentAccount,"boundary")
-			if globals.prefs.repeat==True:
+			if globals.prefs.repeat:
 				self.speak_item()
 			return
-		globals.currentAccount.currentTimeline.index+=20
+		globals.currentAccount.currentTimeline.index += globals.prefs.move_amount
 		self.focus_tl_item()
 
 	def bottom_item(self):

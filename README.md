@@ -25,4 +25,3 @@ We ask that pull requests are submitted always, in order to avoid merge conflict
 * Export buffers feature
 * View blocked and muted users.
 * add command line arguments for external player
-* Let you customize how much Control+Windows+Page up/down moves you (within reason of course).

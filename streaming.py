@@ -33,7 +33,7 @@ class StreamListener(tweepy.StreamListener):
 		for i in self.users:
 			self.home_users.append(i)
 		for i in self.account.timelines:
-			if i.type=="user" and i.user.protected==False and i.user.id_str not in self.users:
+			if i.type=="user" and not i.user.protected and i.user.id_str not in self.users:
 				self.users.append(i.user.id_str)
 
 	def on_connect(self):
@@ -63,7 +63,7 @@ class StreamListener(tweepy.StreamListener):
 			status._json = {**status._json, **status._json["extended_tweet"]}
 		status=Status().parse(None,status._json)
 		if status.user.id_str in self.users:
-			if send_home==True:
+			if send_home:
 				self.account.timelines[0].load(items=[status])
 			if status.user.screen_name!=self.account.me.screen_name:
 				users=utils.get_user_objects_in_tweet(self.account,status)

@@ -7,7 +7,7 @@ if platform.system()!="Darwin":
 	sys.stderr=f
 import shutil
 import os
-if os.path.exists(os.path.expandvars("%temp%\gen_py"))==True:
+if os.path.exists(os.path.expandvars("%temp%\gen_py")):
 	shutil.rmtree(os.path.expandvars("%temp%\gen_py"))
 # Bye foo!
 import wx
@@ -17,7 +17,7 @@ import speak
 from GUI import main
 import globals
 globals.load()
-if globals.prefs.window_shown==True:
+if globals.prefs.window_shown:
 	main.window.Show()
 else:
 	speak.speak("Welcome to Quinter! Main window hidden.")

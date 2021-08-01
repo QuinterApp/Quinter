@@ -142,9 +142,9 @@ class OptionsGui(wx.Dialog):
 			globals.prefs.invisible_sync=self.advanced.invisible_sync.GetValue()
 			globals.prefs.repeat=self.advanced.repeat.GetValue()
 			globals.prefs.invisible_sync=self.advanced.invisible_sync.GetValue()
-			if globals.prefs.invisible==True and main.window.invisible==False:
+			if globals.prefs.invisible and not main.window.invisible:
 				main.window.register_keys()
-			if globals.prefs.invisible==False and main.window.invisible==True:
+			if not globals.prefs.invisible and main.window.invisible:
 				main.window.unregister_keys()
 		globals.prefs.streaming=self.advanced.streaming.GetValue()
 		globals.prefs.position=self.advanced.position.GetValue()
@@ -185,9 +185,9 @@ class OptionsGui(wx.Dialog):
 		globals.prefs.userTemplate=self.templates.userTemplate.GetValue()
 		globals.prefs.autoOpenSingleURL=self.general.autoOpenSingleURL.GetValue()
 		self.Destroy()
-		if reverse==True:
+		if reverse:
 			timeline.reverse()
-		if refresh==True:
+		if refresh:
 			main.window.refreshList()
 
 	def OnClose(self, event):

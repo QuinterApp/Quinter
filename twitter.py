@@ -70,7 +70,7 @@ class twitter(object):
 		timeline.add(self,"Sent","user",self.me.screen_name,self.me)
 		for i in self.prefs.user_timelines:
 			tl=misc.user_timeline_user(self,i,False)
-			if tl==False:
+			if not tl:
 				self.prefs.user_timelines.remove(i)
 		for i in self.prefs.list_timelines:
 			misc.list_timeline(self,self.api.get_list(list_id=i).name,i,False)
@@ -78,14 +78,14 @@ class twitter(object):
 			misc.search(self,i,False)
 		self.stream_listener=None
 		self.stream=None
-		if globals.prefs.streaming==True:
+		if globals.prefs.streaming:
 			self.start_stream()
 
 		if globals.currentAccount==self:
 			main.window.list.SetSelection(0)
 			main.window.on_list_change(None)
 		threading.Thread(target=timeline.timelineThread,args=[self,],daemon=True).start()
-		if self.prefs.follow_prompt==False:
+		if not self.prefs.follow_prompt:
 			q=utils.question("Follow for app updates and support","Would you like to follow @QuinterApp to get app updates and support?")
 			if q==1:
 				misc.follow_user(self,"@QuinterApp")
@@ -94,7 +94,7 @@ class twitter(object):
 	def start_stream(self):
 		if self.stream_listener==None:
 			self.stream_listener = streaming.StreamListener(self)
-		if self.stream==None or self.stream!=None and self.stream.running==False:
+		if self.stream == None or self.stream != None and not self.stream.running:
 			self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener,stall_warnings=True)
 			self.stream_thread=threading.Thread(target=self.stream.filter, kwargs={"follow":self.stream_listener.users},daemon=True)
 			self.stream_thread.start()

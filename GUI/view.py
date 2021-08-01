@@ -50,7 +50,7 @@ class ViewGui(wx.Dialog):
 			self.text2 = wx.TextCtrl(self.panel, style=wx.TE_READONLY|wx.TE_MULTILINE|wx.TE_DONTWRAP, size=text_box_size)
 			self.main_box.Add(self.text2, 0, wx.ALL, 10)
 			extra=""
-			if hasattr(self.status,"extended_entities")==True:
+			if hasattr(self.status,"extended_entities"):
 				if "media" in self.status.extended_entities:
 					index=0
 					for i in self.status.extended_entities['media']:
@@ -74,7 +74,7 @@ class ViewGui(wx.Dialog):
 			self.view_image = wx.Button(self.panel, -1, "&View Image")
 			self.view_image.Bind(wx.EVT_BUTTON, self.OnViewImage)
 			self.main_box.Add(self.view_image, 0, wx.ALL, 10)
-			if hasattr(self.status,"extended_entities")==False or hasattr(self.status,"extended_entities") and self.status.extended_entities['media']==0:
+			if not hasattr(self.status,"extended_entities") or hasattr(self.status,"extended_entities") and self.status.extended_entities['media'] == 0:
 				self.view_image.Enable(False)
 			self.reply = wx.Button(self.panel, -1, "&Reply")
 			self.reply.Bind(wx.EVT_BUTTON, self.OnReply)
@@ -310,7 +310,7 @@ class ViewImageGui(wx.Dialog):
 		self.url=None
 		if hasattr(status,"profile_image_url_https"):
 			self.url=status.profile_image_url_https
-		elif hasattr(status,"extended_entities")==True:
+		elif hasattr(status,"extended_entities"):
 			if "media" in status.extended_entities:
 				for i in status.extended_entities['media']:
 					self.url=i['media_url']

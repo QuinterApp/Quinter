@@ -96,7 +96,7 @@ def  load():
 		f.close()
 	except:
 		pass
-	if prefs.user_reversed==False:
+	if not prefs.user_reversed:
 		users=[]
 		prefs.user_reversed=True
 	load_timeline_settings()

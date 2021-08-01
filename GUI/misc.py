@@ -193,7 +193,7 @@ def havent_tweeted(account):
 	flw.Show()
 
 def user_timeline_user(account,username,focus=True):
-	if username in account.prefs.user_timelines and focus==True:
+	if username in account.prefs.user_timelines and focus:
 		utils.alert("You already have a timeline for this user open.","Error")
 		return False
 	if len(account.prefs.user_timelines)>=8:
@@ -201,28 +201,28 @@ def user_timeline_user(account,username,focus=True):
 		return False
 	user=utils.lookup_user_name(account,username)
 	if user!=-1:
-		if focus==False:
+		if not focus:
 			account.timelines.append(timeline.timeline(account,name=username+"'s Timeline",type="user",data=username,user=user,silent=True))
 		else:
 			account.timelines.append(timeline.timeline(account,name=username+"'s Timeline",type="user",data=username,user=user))
 		if username not in account.prefs.user_timelines:
 			account.prefs.user_timelines.append(username)
 		main.window.refreshTimelines()
-		if focus==True:
+		if focus:
 			account.currentIndex=len(account.timelines)-1
 			main.window.list.SetSelection(len(account.timelines)-1)
 			main.window.on_list_change(None)
 		return True
 
 def search(account,q,focus=True):
-	if focus==False:
+	if not focus:
 		account.timelines.append(timeline.timeline(account,name=q+" Search",type="search",data=q,silent=True))
 	else:
 		account.timelines.append(timeline.timeline(account,name=q+" Search",type="search",data=q))
 	if q not in account.prefs.search_timelines:
 		account.prefs.search_timelines.append(q)
 	main.window.refreshTimelines()
-	if focus==True:
+	if focus:
 		account.currentIndex=len(account.timelines)-1
 		main.window.list.SetSelection(len(account.timelines)-1)
 		main.window.on_list_change(None)
@@ -233,20 +233,20 @@ def user_search(account,q):
 	u.Show()
 
 def list_timeline(account,n, q,focus=True):
-	if q in account.prefs.list_timelines and focus==True:
+	if q in account.prefs.list_timelines and focus:
 		utils.alert("You already have a timeline for this list open!","Error")
 		return
 	if len(account.prefs.list_timelines)>=8:
 		utils.alert("You cannot have this many list timelines open!","Error")
 		return
-	if focus==False:
+	if not focus:
 		account.timelines.append(timeline.timeline(account,name=n+" List",type="list",data=q,silent=True))
 	else:
 		account.timelines.append(timeline.timeline(account,name=n+" List",type="list",data=q))
 	if q not in account.prefs.list_timelines:
 		account.prefs.list_timelines.append(q)
 	main.window.refreshTimelines()
-	if focus==True:
+	if focus:
 		account.currentIndex=len(account.timelines)-1
 		main.window.list.SetSelection(len(account.timelines)-1)
 		main.window.on_list_change(None)
@@ -324,7 +324,7 @@ def load_conversation(account,status):
 	main.window.on_list_change(None)
 
 def play(status):
-	if sound.player!=None and sound.player.is_playing==True:
+	if sound.player != None and sound.player.is_playing:
 		speak.speak("Stopped")
 		sound.stop()
 		return

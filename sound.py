@@ -4,16 +4,16 @@ from sound_lib import stream
 from sound_lib import output as o
 import globals
 import speak
+import re
 
 out = o.Output()
 handle = None
 
-import re
-
 def return_url(url):
 	return url
 
-media_matchlist = [{"match": r"https://sndup.net/[a-zA-Z0-9]+/[ad]$", "func":return_url},
+media_matchlist = [
+	{"match": r"https://sndup.net/[a-zA-Z0-9]+/[ad]$", "func":return_url},
 	{"match": r"^http:\/\/\S+(\/\S+)*(\/)?\.(mp3|m4a|ogg|opus|flac)$", "func":return_url},
 	{"match": r"^https:\/\/\S+(\/\S+)*(\/)?\.(mp3|m4a|ogg|opus|flac)$", "func":return_url},
 	{"match": r"^http:\/\/\S+:[+-]?[1-9]\d*|0(\/\S+)*(\/)?$", "func":return_url},
@@ -25,7 +25,7 @@ media_matchlist = [{"match": r"https://sndup.net/[a-zA-Z0-9]+/[ad]$", "func":ret
 	{"match": r"https?://soundcloud.com/.+", "func":return_url},
 	{"match": r"https?://t.co/.", "func":return_url},
 	{"match": r"^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$", "func":return_url}
-	]
+]
 
 def get_media_urls(urls):
 	result = []
@@ -46,11 +46,11 @@ def play(account, filename, pack="", wait=False):
 			handle.free()
 		except sound_lib.main.BassError:
 			pass
-	if os.path.exists(globals.confpath+"/sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"):
-		path=globals.confpath+"/sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"
-	elif os.path.exists("sounds/"+account.prefs.soundpack+"/"+filename + ".ogg"):
-		path="sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"
-	elif os.path.exists(globals.confpath+"/sounds/default/" + filename + ".ogg"):
+	if os.path.exists(globals.confpath + "/sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"):
+		path = globals.confpath + "/sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"
+	elif os.path.exists("sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"):
+		path = "sounds/" + account.prefs.soundpack + "/" + filename + ".ogg"
+	elif os.path.exists(globals.confpath + "/sounds/default/" + filename + ".ogg"):
 		path=globals.confpath+"/sounds/default/" + filename + ".ogg"
 	elif os.path.exists("sounds/default/"+filename + ".ogg"):
 		path="sounds/default/" + filename + ".ogg"

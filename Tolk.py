@@ -12,6 +12,7 @@ import sys
 
 if sys.version_info[1] >= 8:
 	os.add_dll_directory(os.getcwd())
+
 _tolk = cdll.Tolk
 
 _proto_load = CFUNCTYPE(None)

@@ -11,6 +11,16 @@ pip install -r requirements.txt
 run
 ```
 
+## Building
+
+```
+git clone https://github.com/QuinterApp/Quinter
+cd quinter
+pip install -r requirements.txt
+build
+copy
+```
+
 ## Contributing.
 
 We ask that pull requests are submitted always, in order to avoid merge conflicts. In addition, if you have a big feature request/idea, it would be better if an issue is opened first, so we can discuss implementation, details, documentation, etc.

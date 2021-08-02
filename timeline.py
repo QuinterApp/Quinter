@@ -38,7 +38,7 @@ class timeline(object):
 				self.read=i.read
 				self.hide=i.hide
 		if self.type=="user" and self.name!="Sent" or self.type=="conversation" or self.type=="search" or self.type=="list":
-			if silent==False:
+			if not silent:
 				sound.play(self.account,"open")
 			self.removable=True
 		if self.type!="messages":
@@ -88,7 +88,7 @@ class timeline(object):
 	def load_conversation(self):
 		status=self.status
 		self.process_status(status)
-		if globals.prefs.reversed==True:
+		if globals.prefs.reversed:
 			self.statuses.reverse()
 		if self.account.currentTimeline==self:
 			main.window.refreshList()
@@ -138,23 +138,23 @@ class timeline(object):
 		main.window.refreshTimelines()
 
 	def load(self,back=False,speech=False,items=[]):
-		if self.hide==True:
+		if self.hide:
 			return False
 		if items==[]:
-			if back==True:
-				if globals.prefs.reversed==False:
+			if back:
+				if not globals.prefs.reversed:
 					self.prev_kwargs['max_id']=self.statuses[len(self.statuses)-1].id
 				else:
 					self.prev_kwargs['max_id']=self.statuses[0].id
 			tl=None
 			try:
-				if back==False:
+				if not back:
 					tl=self.func(**self.update_kwargs)
 				else:
 					tl=self.func(**self.prev_kwargs)
 			except TweepError as error:
 				utils.handle_error(error,self.account.me.screen_name+"'s "+self.name)
-				if self.removable==True:
+				if self.removable:
 					if self.type=="user" and self.data in self.account.prefs.user_timelines:
 						self.account.prefs.user_timelines.remove(self.data)
 					if self.type=="list" and self.data in self.account.prefs.list_timelines:
@@ -179,96 +179,96 @@ class timeline(object):
 			for i in tl:
 				if self.type!="messages":
 					utils.add_users(i)
-				if utils.isDuplicate(i,self.statuses)==False:
+				if not utils.isDuplicate(i, self.statuses):
 					newitems+=1
-					if self.initial==True or back==True:
-						if globals.prefs.reversed==False:
+					if self.initial or back:
+						if not globals.prefs.reversed:
 							self.statuses.append(i)
 							objs2.append(i)
 						else:
 							self.statuses.insert(0,i)
 							objs2.insert(0,i)
 					else:
-						if globals.prefs.reversed==False:
+						if not globals.prefs.reversed:
 							objs.append(i)
 							objs2.append(i)
 						else:
 							objs.insert(0,i)
 							objs2.insert(0,i)
 
-			if newitems==0 and speech==True:
+			if newitems==0 and speech:
 				speak.speak("Nothing new.")
 			if newitems>0:
-				if self.read==True:
+				if self.read:
 					self.read_items(objs2)
 				if len(objs)>0:
-					if globals.prefs.reversed==False:
+					if not globals.prefs.reversed:
 						objs.reverse()
 						objs2.reverse()
 					for i in objs:
-						if globals.prefs.reversed==False:
+						if not globals.prefs.reversed:
 							self.statuses.insert(0,i)
 						else:
 							self.statuses.append(i)
 
 				if globals.currentAccount==self.account and self.account.currentTimeline==self:
-					if back==False and self.initial==False:
-						if globals.prefs.reversed==False:
+					if not back and not self.initial:
+						if not globals.prefs.reversed:
 							main.window.add_to_list(self.prepare(objs2))
 						else:
 							objs2.reverse()
 							main.window.append_to_list(self.prepare(objs2))
 
 					else:
-						if globals.prefs.reversed==False:
+						if not globals.prefs.reversed:
 							main.window.append_to_list(self.prepare(objs2))
 						else:
 							main.window.add_to_list(self.prepare(objs2))
 
 				if items==[] and self.type!="messages":
-					if globals.prefs.reversed==False:
+					if not globals.prefs.reversed:
 						self.update_kwargs['since_id']=tl[0].id
 					else:
 						self.update_kwargs['since_id']=tl[len(tl)-1].id
 
-				if back==False and self.initial==False:
-					if globals.prefs.reversed==False:
+				if not back and not self.initial:
+					if not globals.prefs.reversed:
 						self.index+=newitems
 						if globals.currentAccount==self.account and self.account.currentTimeline==self and len(self.statuses)>0:
 							try:
 								main.window.list2.SetSelection(self.index)
 							except:
 								pass
-				if back==True and globals.prefs.reversed==True:
+				if back and globals.prefs.reversed:
 					self.index+=newitems
 					if globals.currentAccount==self.account and self.account.currentTimeline==self and len(self.statuses)>0:
 						main.window.list2.SetSelection(self.index)
 
-				if self.initial==True:
-					if globals.prefs.reversed==False:
+				if self.initial:
+					if not globals.prefs.reversed:
 						self.index=0
 					else:
 						self.index=len(self.statuses)-1
-				if self.mute==False and self.hide==False:
+				if not self.mute and not self.hide:
 					self.play()
 				globals.prefs.statuses_received+=newitems
-				if speech==True:
+				if speech:
 					announcement=f"{newitems} new item"
 					if newitems!=1:
 						announcement+="s"
 					speak.speak(announcement)
-			if self.initial==True:
+			if self.initial:
 				self.initial=False
 #			if globals.currentTimeline==self:
 #				main.window.refreshList()
 		if self.type=="messages":
 			globals.save_messages(self.account,self.statuses)
-		if self==self.account.timelines[len(self.account.timelines)-1] and self.account.ready==False:
+		if self == self.account.timelines[len(self.account.timelines) - 1] and not self.account.ready:
 			self.account.ready=True
 			sound.play(self.account,"ready")
 
 	def toggle_read(self):
-		if self.read==True:
+		if self.read:
 			self.read=False
 			speak.speak("Autoread off")
 		else:
@@ -278,7 +278,7 @@ class timeline(object):
 		globals.save_timeline_settings()
 
 	def toggle_mute(self):
-		if self.mute==True:
+		if self.mute:
 			self.mute=False
 			speak.speak("Unmuted")
 		else:
@@ -300,12 +300,12 @@ class timeline(object):
 		items2=[]
 		for i in items:
 			if self.type!="messages":
-				if globals.prefs.reversed==False:
+				if not globals.prefs.reversed:
 					items2.append(utils.process_tweet(i))
 				else:
 					items2.insert(0,utils.process_tweet(i))
 			else:
-				if globals.prefs.reversed==False:
+				if not globals.prefs.reversed:
 					items2.append(utils.process_message(i))
 				else:
 					items2.insert(0,utils.process_message(i))
@@ -337,7 +337,7 @@ def timelineThread(account):
 					speak.speak(error.response.text)
 				else:
 					speak.speak(str(error))
-		if globals.prefs.streaming==True and (account.stream!=None and account.stream.running==False or account.stream==None):
+		if globals.prefs.streaming and (account.stream != None and not account.stream.running or account.stream == None):
 			account.start_stream()
 		if len(globals.unknown_users)>0:
 			try:

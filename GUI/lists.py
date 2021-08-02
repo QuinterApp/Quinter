@@ -20,7 +20,7 @@ class ListsGui(wx.Dialog):
 		self.list.Bind(wx.EVT_LISTBOX, self.on_list_change)
 		self.add_items()
 		if self.user!=None:
-			if self.add==True:
+			if self.add:
 				self.load = wx.Button(self.panel, wx.ID_DEFAULT, "&Add")
 			else:
 				self.load = wx.Button(self.panel, wx.ID_DEFAULT, "&Remove")
@@ -120,7 +120,7 @@ class ListsGui(wx.Dialog):
 		if self.user==None:
 			misc.list_timeline(self.account,self.lists[self.list.GetSelection()].name, self.lists[self.list.GetSelection()].id)
 		else:
-			if self.add==True:
+			if self.add:
 				self.account.api.add_list_member(user_id=self.user.id, list_id=self.lists[self.list.GetSelection()].id)
 			else:
 				self.account.api.remove_list_member(user_id=self.user.id, list_id=self.lists[self.list.GetSelection()].id)

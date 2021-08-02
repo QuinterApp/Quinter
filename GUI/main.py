@@ -272,14 +272,14 @@ class MainGui(wx.Frame):
 			success=invisible.register_key(key[0],key[1],False)
 
 	def ToggleWindow(self):
-		if self.IsShown()==True:
+		if self.IsShown():
 			self.Show(False)
 			globals.prefs.window_shown=False
 		else:
 			self.Show(True)
 			self.Raise()
 			globals.prefs.window_shown=True
-			if globals.prefs.invisible_sync==False:
+			if not globals.prefs.invisible_sync:
 				self.list.SetSelection(globals.currentAccount.currentIndex)
 				self.on_list_change(None)
 				self.list2.SetSelection(globals.currentAccount.currentTimeline.index)
@@ -339,13 +339,13 @@ class MainGui(wx.Frame):
 		globals.currentAccount.currentTimeline.hide_tl()
 
 	def OnNextInThread(self,event=None):
-		if globals.prefs.reversed==False:
+		if not globals.prefs.reversed:
 			misc.next_in_thread(globals.currentAccount)
 		else:
 			misc.previous_in_thread(globals.currentAccount)
 
 	def OnPreviousInThread(self,event=None):
-		if globals.prefs.reversed==False:
+		if not globals.prefs.reversed:
 			misc.previous_in_thread(globals.currentAccount)
 		else:
 			misc.next_in_thread(globals.currentAccount)
@@ -395,7 +395,7 @@ class MainGui(wx.Frame):
 	def on_list_change(self, event):
 		globals.currentAccount.currentTimeline=globals.currentAccount.list_timelines()[self.list.GetSelection()]
 		globals.currentAccount.currentIndex=self.list.GetSelection()
-		if globals.currentAccount.currentTimeline.removable==True:
+		if globals.currentAccount.currentTimeline.removable:
 			self.m_close_timeline.Enable(True)
 		else:
 			self.m_close_timeline.Enable(False)
@@ -404,7 +404,7 @@ class MainGui(wx.Frame):
 		self.refreshList()
 
 	def play_earcon(self):
-		if globals.prefs.earcon_top==True and (globals.prefs.reversed==False and globals.currentAccount.currentTimeline.index>0 or globals.prefs.reversed==True and globals.currentAccount.currentTimeline.index<len(globals.currentAccount.currentTimeline.statuses)-1):
+		if globals.prefs.earcon_top and (not globals.prefs.reversed and globals.currentAccount.currentTimeline.index > 0 or globals.prefs.reversed and globals.currentAccount.currentTimeline.index < len(globals.currentAccount.currentTimeline.statuses) - 1):
 			sound.play(globals.currentAccount,"new")
 
 	def OnFollowers(self,event=None):
@@ -447,7 +447,7 @@ class MainGui(wx.Frame):
 
 	def on_list2_change(self, event):
 		globals.currentAccount.currentTimeline.index=self.list2.GetSelection()
-		if globals.prefs.earcon_audio==True and len(sound.get_media_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index])))>0:
+		if globals.prefs.earcon_audio and len(sound.get_media_urls(utils.find_urls_in_tweet(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index]))) > 0:
 			sound.play(globals.currentAccount,"media")
 
 	def onRefresh(self,event=None):
@@ -558,12 +558,12 @@ class MainGui(wx.Frame):
 
 	def OnCloseTimeline(self, event=None):
 		tl=globals.currentAccount.currentTimeline
-		if tl.removable==True:
-			if globals.prefs.ask_dismiss==True:
+		if tl.removable:
+			if globals.prefs.ask_dismiss:
 				dlg=wx.MessageDialog(None,"Are you sure you wish to close "+tl.name+"?","Warning",wx.YES_NO | wx.ICON_QUESTION)
 				result=dlg.ShowModal()
 				dlg.Destroy()
-			if globals.prefs.ask_dismiss==False or globals.prefs.ask_dismiss==True and result== wx.ID_YES:
+			if not globals.prefs.ask_dismiss or globals.prefs.ask_dismiss and result== wx.ID_YES:
 				if tl.type=="user" and tl.data in globals.currentAccount.prefs.user_timelines:
 					globals.currentAccount.prefs.user_timelines.remove(tl.data)
 				if tl.type=="list" and tl.data in globals.currentAccount.prefs.list_timelines:

@@ -89,7 +89,7 @@ class TweetGui(wx.Dialog):
 		mods = event.HasAnyModifiers()
 		keycode = event.GetKeyCode()
 		if keycode == wx.WXK_RETURN:
-			if mods==False:
+			if not mods:
 				self.Tweet(None)
 		event.Skip()
 
@@ -180,7 +180,7 @@ class TweetGui(wx.Dialog):
 						index=0
 						if hasattr(self,"list"):
 							for i in self.users:
-								if self.list.IsChecked(index)==False:
+								if not self.list.IsChecked(index):
 									self.ids.append(str(i.id))
 								index+=1
 						status=self.account.tweet(self.text.GetValue(),self.status.id,auto_populate_reply_metadata=True,exclude_reply_user_ids=",".join(self.ids))
@@ -211,7 +211,7 @@ class TweetGui(wx.Dialog):
 			snd="send_message"
 		if status!=False:
 			sound.play(self.account,snd)
-			if hasattr(self,"thread")==True and self.thread.GetValue()==False or hasattr(self,"thread")==False:
+			if hasattr(self,"thread") and not self.thread.GetValue() or not hasattr(self, "thread"):
 				self.Destroy()
 			else:
 				self.status=status

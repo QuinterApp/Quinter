@@ -30,6 +30,10 @@ class general(wx.Panel, wx.Dialog):
 		self.wrap=wx.CheckBox(self, -1, "Word wrap in text fields")
 		self.main_box.Add(self.wrap, 0, wx.ALL, 10)
 		self.wrap.SetValue(globals.prefs.wrap)
+		self.move_amount_label = wx.StaticText(self, -1, "Number of tweets to move when using control+windows+page up/down")
+		self.move_amount = wx.TextCtrl(self, -1, "")
+		self.main_box.Add(self.move_amount, 0, wx.ALL, 10)
+		self.move_amount.AppendText(str(globals.prefs.move_amount))
 		self.autoOpenSingleURL=wx.CheckBox(self, -1, "when getting URLs from a tweet, automatically open the first URL if it is the only one")
 		self.main_box.Add(self.autoOpenSingleURL, 0, wx.ALL, 10)
 		self.autoOpenSingleURL.SetValue(globals.prefs.autoOpenSingleURL)
@@ -138,9 +142,9 @@ class OptionsGui(wx.Dialog):
 			globals.prefs.invisible_sync=self.advanced.invisible_sync.GetValue()
 			globals.prefs.repeat=self.advanced.repeat.GetValue()
 			globals.prefs.invisible_sync=self.advanced.invisible_sync.GetValue()
-			if globals.prefs.invisible==True and main.window.invisible==False:
+			if globals.prefs.invisible and not main.window.invisible:
 				main.window.register_keys()
-			if globals.prefs.invisible==False and main.window.invisible==True:
+			if not globals.prefs.invisible and main.window.invisible:
 				main.window.unregister_keys()
 #		globals.prefs.streaming=self.advanced.streaming.GetValue()
 		globals.prefs.position=self.advanced.position.GetValue()
@@ -151,6 +155,11 @@ class OptionsGui(wx.Dialog):
 		globals.prefs.update_time=int(self.advanced.update_time.GetValue())
 		if globals.prefs.update_time<1:
 			globals.prefs.update_time=1
+		globals.prefs.move_amount = int(self.general.move_amount.GetValue())
+		if globals.prefs.move_amount < 5:
+			globals.prefs.move_amount = 5
+		if globals.prefs.move_amount > 50:
+			globals.prefs.move_amount = 50
 		globals.prefs.user_limit=int(self.advanced.user_limit.GetValue())
 		if globals.prefs.user_limit<1:
 			globals.prefs.user_limit=1
@@ -176,9 +185,9 @@ class OptionsGui(wx.Dialog):
 		globals.prefs.userTemplate=self.templates.userTemplate.GetValue()
 		globals.prefs.autoOpenSingleURL=self.general.autoOpenSingleURL.GetValue()
 		self.Destroy()
-		if reverse==True:
+		if reverse:
 			timeline.reverse()
-		if refresh==True:
+		if refresh:
 			main.window.refreshList()
 
 	def OnClose(self, event):

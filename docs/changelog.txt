@@ -2,6 +2,7 @@
 Unblocking is fixed now.
 You can now (optionally) view times in 24-hour format (thanks Alex Hall for implementing)!
 Minor bugfixes and changes to speech prompts.
+Added an option so you can configure how much control+windows+page up/down moves you.
 
 0.62
 Adds a new user analysis, users I follow that haven't tweeted in a year. Thanks Simon for the suggestion!

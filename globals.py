@@ -88,6 +88,7 @@ def  load():
 	prefs.earcon_audio=prefs.get("earcon_audio",True)
 	prefs.earcon_top=prefs.get("earcon_top",False)
 	prefs.wrap=prefs.get("wrap",False)
+	prefs.move_amount = prefs.get("move_amount", 20)
 	if prefs.invisible:
 		main.window.register_keys()
 	try:
@@ -96,7 +97,7 @@ def  load():
 		f.close()
 	except:
 		pass
-	if prefs.user_reversed==False:
+	if not prefs.user_reversed:
 		users=[]
 		prefs.user_reversed=True
 	load_timeline_settings()

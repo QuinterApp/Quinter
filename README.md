@@ -8,17 +8,17 @@ Quinter is a light-weight, robust, accessible Twitter client for Mac and Windows
 git clone https://github.com/QuinterApp/Quinter
 cd quinter
 pip install -r requirements.txt
-run
+run.bat
 ```
 
 ## Building
 
-```
+```batch
 git clone https://github.com/QuinterApp/Quinter
 cd quinter
 pip install -r requirements.txt
-build
-copy
+build.bat
+copy.bat
 ```
 
 ## Contributing.

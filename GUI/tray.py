@@ -7,7 +7,7 @@ TRAY_ICON = 'icon.png'
 def create_menu_item(menu, label, func):
 	item = wx.MenuItem(menu, -1, label)
 	menu.Bind(wx.EVT_MENU, func, id=item.GetId())
-	menu.AppendItem(item)
+	menu.Append(item)
 	return item
 
 class TaskBarIcon(wx.adv.TaskBarIcon):

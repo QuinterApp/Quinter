@@ -1,4 +1,8 @@
+0.64
+You can now exit with the system tray propperly (thanks Brandon Tyson for reporting)!
+
 0.63
+Streaming has been disabled in this version, as Twitter has nuked the endpoint we were using.
 Unblocking is fixed now.
 You can now (optionally) view times in 24-hour format (thanks Alex Hall for implementing)!
 Minor bugfixes and changes to speech prompts.

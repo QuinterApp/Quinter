@@ -1,5 +1,6 @@
 0.64
 You can now exit with the system tray propperly (thanks Brandon Tyson for reporting)!
+Streaming is reenabled, with much better error handling. Note: It may or may not work, depending on your luck, or something.
 
 0.63
 Streaming has been disabled in this version, as Twitter has nuked the endpoint we were using.

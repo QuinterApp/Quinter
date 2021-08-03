@@ -1,2 +1,275 @@
 0.65
 Actually fixed the options dialog, maybe sort of I don't know.
+
+0.64
+You can now exit with the system tray propperly (thanks Brandon Tyson for reporting)!
+Streaming is reenabled, with much better error handling. Note: It may or may not work, depending on your luck, or something.
+
+0.63
+Streaming has been disabled in this version, as Twitter has nuked the endpoint we were using.
+Unblocking is fixed now.
+You can now (optionally) view times in 24-hour format (thanks Alex Hall for implementing)!
+Minor bugfixes and changes to speech prompts.
+Added an option so you can configure how much control+windows+page up/down moves you.
+
+0.62
+Adds a new user analysis, users I follow that haven't tweeted in a year. Thanks Simon for the suggestion!
+Fixes user timelines!
+You now hear the boundary sound if at the edge of a thread or specific user's tweets using the hotkeys.
+You can no longer scroll through empty timelines like they have items in them.
+
+0.61
+Adds a built-in facility for updating and downloading QPlay directly from within Quinter!
+
+0.60
+Adds an option to automatically open URL's if there is only one (Thanks Alex Hall for implementing!)
+Adds alt S to open the user menu (Thanks Alex Hall for suggesting!)
+The readme has been completely rewritten. It's still missing some information, but you'll have to let us know what you think.
+Separates out audio playback into external media player called QPlay. This means quite a few things, quicker load times, less RAM usage, etc. Note: You may have to set your external media player (now called media player) to QPlay manually if you want to use it. Playback functionality directly in the client has been removed.
+
+0.59
+Fixes list manager unable to properly load with no lists.
+If your account API call number could produce false positives, you're now alerted.
+Fixes a bug where if you launched the program with too many user timelines open, you would not be able to open any more or close the existing ones from your config.
+Adds invisible shortcuts for jumping up and down the timeline by 20 items.
+Fixes a bug where date parsing wouldn't properly show the day on yesterday's tweets when the day changes (Thanks Tyler for reporting)
+Adds the ability to hide timelines and manage hidden timelines from the timeline menu.
+
+0.58
+The number of characters is now calculated correctly when multibyte characters are included when composing a tweet.
+Fixed the result of "$created_at$" of tweet being strange in some environments.
+You can now use control/command enter to insert a newline in new tweet fields.
+
+0.57
+Emergency fix for sounds not working on some clients.
+
+0.56
+We now show the bio in user lists.
+You can now press control semicolon or command semicolon on mac for speak user summary in user viewer/profile dialogs!
+We can now stream user timelines. This is very dependant on a few factors, so it may not stream all the time if at all, but it does when it can. If you load a user timeline for a user you don't follow and wish for it to stream, you will need to restart the program.
+Fixed some bugs on direct message receive with remove emojis enabled which in worst cases could cause timeline refreshing to halt.
+Fixes (hopefully) some links not appearing correctly in streamed tweets.
+Some modifications to the user cache to hopefully majorly reduce lag with switching between buffers.
+Replaces clean user database option with refresh user database, which cleans the entire database rather than checking for duplicate users. It is recommended to restart after performing this clean, and not to perform it unless you notice lag.
+
+0.55
+Fixes quoted tweets with the streaming API... Properly this time.
+On Mac OS, native spell checking support is now enabled for the tweet text field. Press command semi or command shift semi for a dialog. Thanks Sarah A for letting us know that this didn't work before!
+You can now load Quinter soundpacks either from the user config dir as before, or the sounds directory in the program folder.
+We now return upto the first 800 of your or anyone else's followers or friends.
+In the menu bar, there is a new users menu, which allows you to perform user analysis such as mutual follows, users you follow that don't follow back, etc.
+You can now set how many API calls you'd like user fetches to get.
+User account folders no longer spawn in separate folders outside your Quinter folder. Your currrent user accounts will be moved on first launch of this version.
+You can now mute and unmute users from the menu.
+Muted users should now not show in the streaming API.
+
+0.54
+Extended quoted tweets and retweeted tweets support to be more compatible with the streaming API.
+Fixes mac and streaming support.
+
+0.53
+Adds an option to remove emojis and other unicode text from tweet text.
+SAPI is fixed.
+Starts work on streaming support for Quinter. This is not very obvious to find because it's very unstable, and retweets and quote tweets don't always parse correctly, but it's there if you choose to use it. This only works so far on home, mentions, sent, and *some* list timelines.
+
+0.52
+Switches to another speech output method on Windows. This should fix JAWS.
+We now have quoted and retweeted templates.
+We now show if a user is protected and their URL in the user viewer.
+You can now remove emojis and other unicode characters from user display names. This is experimental.
+
+0.51
+Puts a limit on how many user timelines and list timelines can be open at a time (8 per each). This was the cause of the problem with the sent timeline failing to update, the user timeline endpoint was being spammed majorly by our client due to way too many user timelines being opened at a time, so we needed to put a limit on this. Sorry for the inconvenience this may cause, and please consider using a list if you would like to see tweets from a large amount of users at once.
+We now ignore the API 429 error when pulling timelines. We still send it to the view API errors option in the help menu, so you can still see if it happens, we just don't speak and play a sound if it does. Other errors like rate limit exceeded will still play.
+You can no longer open multiple copies of a user or list timeline.
+
+0.5
+You can now customize how frequently tweets get pulled (do note that if you set this to too small of a value, you'll most likely get API errors).
+You can now choose how many tweets get fetched when loading a timeline, or fetching newest tweets.
+Increases reliability of timeline updating thread.
+Error messages now tell you which action they come from.
+If you have multiple accounts, auto read will now tell you which account a tweet comes in from.
+You can now choose if Quinter repeats the items at the edges in the invisible interface.
+Mute changed from command M on mac to command shift M to prevent minimize conflict.
+In the main window, you can now press alt left and right arrow (Option on mac) to switch between timelines.
+Fixes System Access (Thanks Jeffrey Stark for reporting! Let us know if it works!)
+Adds an option in advanced to disable speaking of position information in invisible interface.
+Adds an option to make an earcon play whenever you are not at the top (or bottom if reversed) of a timeline, which may mean you have new items.
+
+0.49
+Fixes new tweet and a couple others in menu to say the correct shortcut.
+Reassigns autoread and mute to alt+win+shift+e and M in invisible interface.
+Adds user search (Not working yet)!
+Fixes invisible interface not playing the earcons for audio and video tweets.
+You no longer hear the ready sound until the account is actually ready.
+We no longer have to retrieve a URL in order to stop the currently playing one.
+
+0.48
+You can now mute/unmute the sounds on a timeline-specific basis.
+You can now have specific timelines automatically read tweets as they come in.
+The shortcuts are now stated on the menu items. For example, Accounts (control+A).
+We no longer tell the keys for the UI in the readme, as they can be found in the menu options themselves.
+We now use methods suggested by Tyler Spivey to hopefully make accessing the UI more responsive. I don't notice a difference personally, but someone might?
+
+0.47
+Changes name of remove button in remove user from list dialog. It was labeled "Add" before.
+Adds autocomplete user to new tweet dialog!
+Fixes a bad bug where if you have syncing of the interfaces off, you couldn't destroy more than one conversation/timeline.
+
+0.46
+There is now an option in the advanced options on Windows to force the invisible interface not to sync with the UI, thus reducing lag by a lot.
+Fixes a bug with custom soundpacks causing some sounds not to play if they don't exist.
+We no longer pull reply usernames from the tweet text, and instead do what you're supposed to do and use the user_mentions entity array. This fixes many problems the mention system had.
+You can now press control shift O to open twitter in your web browser directly to the focused tweet.
+Thread mode now has an access Key (Thanks NS for notifying about it)
+The new tweet/reply/quote/message dialog has been redesigned from the ground up to be more twitter like. Replies no longer take up characters in your tweets, you can easily remove users from threads, and more!
+The recipient edit field in the direct message dialog is no longer a multi line edit field.
+Sending direct messages should no longer fail as often.
+
+0.45
+Emergency patch: Fixed a really bad bug resulting from user timeline sounds causing errors if you had ran Quinter after 0.4.
+
+0.44
+Added a sent tweets buffer.
+Resized the text fields a bit, hopefully fixing visuals, and making word wrap a lot better.
+If you type an @ symbol before someone's username, it still brings up the profile.
+Adds a way in the view tweet and user profile dialogs to view someone's Twitter profile image or the first image in a tweet. Someone will have to let me know how it looks!
+
+0.43
+Added a new option to the account settings dialog. You can now set the pan of account-specific sounds!
+The GUI should (hopefully) look a lot better now, but we're seaking feedback.
+
+0.42
+You can now press enter in the update profile dialog to save your changes without needing to tab to the button.
+There's a new option, allowing you to choose if the text in text fields should wrap onto new lines or not. It's off by default.
+Fixed a bug that allowed timelines to break in rare instances.
+Added a new global key (control+windows+alt+a) to speak the current account.
+You are now alerted if trying to view a tweet that has been deleted (thanks Wren)!
+Swapped volume and prev/next from user/thread. Now, volume is alt and prev/next from thread/user is control.
+We no longer speak 1 of 0 on empty timelines in the invisible interface.
+Quoted tweets should always expand now.
+
+0.41
+The window title now shows which account you are in.
+Regular tweets will send out as proper tweets now. They were doing this before, but Quinter wasn't realizing what it was sending were actually tweets, and it was trying to attach a blank tweet ID to the tweet when it didn't need to. This wasn't hurting anything, it was just something I noticed just now so I fixed it.
+Adds the windows alt space key in the invisible interface keymap to speak the currently focused item.
+Generalizes some control names.
+Adds an account options dialog, where you can set independant account soundpacks and tweet footers.
+Fixes reverse timelines.
+
+0.4
+Fixed previous and next in thread in reversed timelines.
+Fixed retweeting in the view tweet dialog.
+We now support multiple accounts! See the application menu. Yet another small change log entry for such a massive pain, as well as massive feature, but eh.
+Remapped the list hotkeys in the GUI to account for the account manager hotkeys.
+
+0.36
+Adds a prompt asking if you want to follow @QuinterApp. You only get prompted for this one time upon login.
+Fixes a bug where if a timeline didn't have items in it, all timeline updating would stop until you relaunched Quinter.
+We now handle a lot more errors, so things won't just silently fail nearly as much anymore.
+If a removable timeline (list, search, user) is unable to be loaded or refreshed for any reason, it will be dismissed automatically.
+You can now view recent API errors by opening View API errors in the help menu.
+You can now reverse timelines. Such a small changelog entry for such a huge pain in the butt, but that's how it goes sometimes, rofl!
+
+0.35
+When you hit yes to download an update, the program now exits after opening the browser.
+If you do not enter a pin, the program will now exit rather than trying to authorize anyway, causing big problems.
+We now have sounds for when a tweet contains audio playable by the client as well as audio playable by the external media player only.
+If you are unable to message a user, you are now told this instead of the dialog just continuing to sit there.
+
+0.33
+If a sound doesn't exist in the current soundpack, Quinter no longer throws an error when trying to play it. Instead, it will just play the sound from the default soundpack.
+Removed raw symbols such as &amp; you now see the propper symbol.
+Adds the advanced dialog to the mac options dialog.
+Fixed a bug on mac where if you try to open Quinter for the first time, it does not open but will open the second time.
+Adds control left and right brackets (Command on mac) to open followers and friends.
+Adds control shift L (Command on mac) to view your lists.
+
+0.32
+We now allow opening more types of media in external media players.
+We now expand Twishort content when you view a tweet.
+Setting a list from private to public and from public to private works propperly now.
+Fixed searches not destroying from your config when you closed them.
+Sounds are now loaded from the config dir.
+This is the first very early alpha version for Mac! Note: On mac, please use tab and shift tab and arrow keys. Using the VoiceOver keys will present user interface elements in the wrong order.
+
+0.31
+Search timelines now persist (Thanks Brian Hartgen for the suggestion!)
+Adds a global hotkey for search and view lists.
+Sounds for open and close of timeline, as well as conversation update.
+More robust dismiss timeline code, which fixes a bug where you could dismiss built-in timelines.
+Adds an option to ask before dismissing timelines to the general tab, which is on by default (The previous behavior).
+Finishes up list support with many new controls in the view lists dialog.
+Fixes update command.
+
+0.3
+Adds lists support!
+Adds twitter searches support.
+Adds a label to the external media player box in options.
+Adds a check for updates option into a help menu in the interface.
+Fixes retweet_count and favorite_count in templates.
+You can now copy the current tweet to the clipboard.
+Adds user template for speak user and copy template for copying to clipboard.
+Adds a tab control to organize the options dialog.
+
+0.24
+Fixed 0 division error that flooded logs.
+Adds keymap support! For now, edit keymap.keymap.
+Adds new keys for moving to previous and next in thread, as well as previous and next from same user in invisible interface.
+
+0.23
+Adds playing of URL's in an external media player. Note: You must set this up in the options dialog.
+We now have a basic update checker. If a new version is found, it'll take you right to your web browser and download it.
+Add friends and follower keystrokes to the invisible interface.
+
+0.22
+Adds ability to playback twitter videos, youtube and other audio types. This causes extra ram usage, so let us know if this becomes a problem and is bloated.
+We now account for the stupid gen_py bug of accessible_output2.
+Speech interrupt for invisible interface.
+
+0.21
+Messages are now cached.
+Window state now saves.
+You can now initiate a new tweet from the system tray icon.
+
+0.2
+Added more information to media in the view tweet dialog.
+Added an invisible interface! This is disabled by default, but can be easily enabled. See the readme for a full key list.
+
+0.16
+Adds view friends and followers buttons to a user profile dialog
+Adds conversation view!
+
+0.15
+Moved all documentation to readme.txt
+In the view tweet dialog, you now have the option to view the original source tweet and view any retweeters of a tweet.
+Fixed a bug where we would sometimes perform API calls to lookup nonexistent users.
+Reclassifies all parent dialogs. No more billions of windows open at once, and you can now use escape. Thanks Josh!
+
+0.14
+Pressing enter to view a tweet will now grab the tweet in realtime.
+You can now see image descriptions/alt text in the view tweet dialog in the second edit field.
+
+0.13
+Fixed case where user profile grabbage could fail.
+User timelines now save on restart.
+Fixed character limmits when posting tweets.
+Added a few more access keys in some dialogs.
+Adds thread mode! Check the thread check box in the tweet or reply dialog, and then you can continue to post tweets on a thread.
+Adds ability to delete your own tweets with the delete key.
+
+0.12
+Whenever text is spoken to the screen reader, it is now Brailled.
+The home timeline is now the default.
+Added a new key (control + semi colon), to speak a breif overview of the user's profile.
+Fixed a bug with user timelines where we were using one more API call than we needed to.
+Updated the default direct message template.
+If you reply to a tweet with a dot before someone gets mentioned, it's no longer included.
+You can now press Control + Shift + Semi Colon to view what a tweet is in reply to.
+Alt left and right arrows cycle you between tweets from the same user.
+Alt up and down arrows allow you to go through the tweets of a thread.
+
+0.11
+Fixes a bug that would cause timeline selections to jump around randomly.
+Users now update in the user cache database.
+Fixes user timelines

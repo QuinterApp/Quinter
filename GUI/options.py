@@ -30,13 +30,13 @@ class general(wx.Panel, wx.Dialog):
 		self.wrap=wx.CheckBox(self, -1, "Word wrap in text fields")
 		self.main_box.Add(self.wrap, 0, wx.ALL, 10)
 		self.wrap.SetValue(globals.prefs.wrap)
-		self.move_amount_label = wx.StaticText(self, -1, "Number of tweets to move when using control+windows+page up/down")
-		self.move_amount = wx.TextCtrl(self, -1, "")
-		self.main_box.Add(self.move_amount, 0, wx.ALL, 10)
-		try:
-			self.move_amount.AppendText(globals.prefs.move_amount)
-		except:
-			pass
+#		self.move_amount_label = wx.StaticText(self, -1, "Number of tweets to move when using control+windows+page up/down")
+#		self.move_amount = wx.TextCtrl(self, -1, "")
+#		self.main_box.Add(self.move_amount, 0, wx.ALL, 10)
+#		try:
+#			self.move_amount.AppendText(globals.prefs.move_amount)
+#		except:
+#			pass
 		self.autoOpenSingleURL=wx.CheckBox(self, -1, "when getting URLs from a tweet, automatically open the first URL if it is the only one")
 		self.main_box.Add(self.autoOpenSingleURL, 0, wx.ALL, 10)
 		self.autoOpenSingleURL.SetValue(globals.prefs.autoOpenSingleURL)
@@ -158,11 +158,11 @@ class OptionsGui(wx.Dialog):
 		globals.prefs.update_time=int(self.advanced.update_time.GetValue())
 		if globals.prefs.update_time<1:
 			globals.prefs.update_time=1
-		globals.prefs.move_amount = int(self.general.move_amount.GetValue())
-		if globals.prefs.move_amount < 5:
-			globals.prefs.move_amount = 5
-		if globals.prefs.move_amount > 50:
-			globals.prefs.move_amount = 50
+#		globals.prefs.move_amount = int(self.general.move_amount.GetValue())
+#		if globals.prefs.move_amount < 5:
+#			globals.prefs.move_amount = 5
+#		if globals.prefs.move_amount > 50:
+#			globals.prefs.move_amount = 50
 		globals.prefs.user_limit=int(self.advanced.user_limit.GetValue())
 		if globals.prefs.user_limit<1:
 			globals.prefs.user_limit=1

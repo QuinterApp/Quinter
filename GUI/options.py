@@ -33,7 +33,10 @@ class general(wx.Panel, wx.Dialog):
 		self.move_amount_label = wx.StaticText(self, -1, "Number of tweets to move when using control+windows+page up/down")
 		self.move_amount = wx.TextCtrl(self, -1, "")
 		self.main_box.Add(self.move_amount, 0, wx.ALL, 10)
-		self.move_amount.AppendText(str(globals.prefs.move_amount))
+		try:
+			self.move_amount.AppendText(str(globals.prefs.move_amount))
+		except:
+			pass
 		self.autoOpenSingleURL=wx.CheckBox(self, -1, "when getting URLs from a tweet, automatically open the first URL if it is the only one")
 		self.main_box.Add(self.autoOpenSingleURL, 0, wx.ALL, 10)
 		self.autoOpenSingleURL.SetValue(globals.prefs.autoOpenSingleURL)

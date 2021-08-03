@@ -24,6 +24,7 @@ class StreamListener(tweepy.StreamListener):
 			self.users = [str(id) for id in self.account.api.friends_ids()]
 		except TweepError as e:
 			utils.handle_error(e)
+			self.users=[]
 		muted=self.account.api.mutes()
 		for i in muted:
 			if i.id_str in self.users:

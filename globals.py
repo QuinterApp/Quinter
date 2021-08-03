@@ -58,8 +58,7 @@ def  load():
 	prefs.quoteTemplate=prefs.get("quoteTemplate","Quoting $user.name$ ($user.screen_name$): $text$")
 	prefs.userTemplate=prefs.get("userTemplate","$name$ ($screen_name$): $followers_count$ followers, $friends_count$ friends, $statuses_count$ tweets. Bio: $description$")
 	prefs.accounts=prefs.get("accounts",1)
-#	prefs.streaming=prefs.get("streaming",False)
-	prefs.streaming=False
+	prefs.streaming=prefs.get("streaming",False)
 	prefs.invisible=prefs.get("invisible",False)
 	prefs.invisible_sync=prefs.get("invisible_sync",True)
 	prefs.update_time=prefs.get("update_time",2)

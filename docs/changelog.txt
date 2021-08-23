@@ -1,5 +1,6 @@
 0.66
 Don't load multiple conversations at once.
+Checkbox in general tab for speaking errors.
 
 0.65
 Actually fixed the options dialog, maybe sort of I don't know.

@@ -1,9 +1,9 @@
 tweepy
-sound_lib
+git+https://www.github.com/accessibleapps/sound_lib
 tweak
 nuitka
-git+http://github.com/accessibleapps/accessible_output2
-git+http://github.com/accessibleapps/keyboard_handler
+git+https://www.github.com/accessibleapps/accessible_output2
+git+https://www.github.com/accessibleapps/keyboard_handler
 pyperclip
 wxpython
 twitter-text-parser

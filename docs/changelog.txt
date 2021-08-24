@@ -1,5 +1,6 @@
 0.67
 Auto updater for windows and update downloader for Mac.
+Removed a few unneeded DLL files, making the directory cleaner.
 
 0.66
 Don't load multiple conversations at once.

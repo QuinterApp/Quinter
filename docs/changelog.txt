@@ -1,3 +1,6 @@
+0.67
+Removed a few unneeded DLL files, making the directory cleaner.
+
 0.66
 Don't load multiple conversations at once.
 Checkbox in general tab for speaking errors.

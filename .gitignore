@@ -5,3 +5,4 @@ __pycache__
 *.spec
 *.pyc
 QPlay.exe
+quinter_updater\updater.exe

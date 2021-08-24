@@ -1,3 +1,6 @@
+0.67
+Auto updater for windows and update downloader for Mac.
+
 0.66
 Don't load multiple conversations at once.
 Checkbox in general tab for speaking errors.

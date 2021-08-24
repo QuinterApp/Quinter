@@ -1,3 +1,4 @@
+import threading
 import zipfile
 import sys
 import html
@@ -472,9 +473,9 @@ def cfu(silent=True):
 			if ud==1:
 				for i in latest['assets']:
 					if "quinter.zip" in i['name'].lower() and platform.system()=="Windows" or "quintermac.zip" in i['name'].lower() and platform.system()=="Darwin":
-						webbrowser.open(i['browser_download_url'])
-						sys.exit()
-			utils.alert("A download for this version could not be found for your platform. Check back soon.","Error")
+						threading.Thread(target=download_update,args=[i['browser_download_url'],],daemon=True).start()
+						return
+			alert("A download for this version could not be found for your platform. Check back soon.","Error")
 		else:
 			if not silent:
 				alert("No updates available! The latest version of the program is "+latest['tag_name'],"No update available")
@@ -523,6 +524,8 @@ def openURL(url):
 
 def download_file(url):
 	local_filename = url.split('/')[-1]
+	if platform.system()=="Darwin":
+		local_filename=os.expanduser("~/Downloads/"+local_filename)
 	with requests.get(url, stream=True) as r:
 		r.raise_for_status()
 		with open(local_filename, 'wb') as f:
@@ -548,3 +551,17 @@ def download_QPlay():
 			zip.close()
 			os.remove(filename)
 			alert("QPlay downloaded and ready to go!","Alert!")
+
+def download_update(url):
+	try:
+		if os.path.exists("Quinter.zip"):
+			os.remove("Quinter.zip")
+	except:
+		alert("The current version of Quinter.zip could not be removed.","Error")
+		return
+	speak.speak("Downloading.")
+	filename=download_file(url)
+	if platform.system()=="Windows":
+		os.system("updater.exe")
+	else:
+		alert("Quinter has been downloaded to your Downloads directory. Due to Apple restrictions, we cannot update Quinter for you on this platform. You must do this yourself.","Alert")

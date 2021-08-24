@@ -317,6 +317,9 @@ def delete(account,status):
 		utils.handle_error(error,"Delete tweet")
 
 def load_conversation(account,status):
+	for i in account.timelines:
+		if i.type=="conversation":
+			return False
 	account.timelines.append(timeline.timeline(account,name="Conversation with "+status.user.screen_name,type="conversation",data=status.user.screen_name,status=status))
 	main.window.refreshTimelines()
 	main.window.list.SetSelection(len(account.timelines)-1)

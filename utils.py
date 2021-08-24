@@ -498,14 +498,16 @@ def handle_error(error,name="Unknown"):
 		if "429" in str(error):
 			globals.errors.append("Error in "+name+": "+error.response.text)
 			return
-		speak.speak("Error in "+name+": "+error.response.text)
+		if globals.prefs.errors==True:
+			speak.speak("Error in "+name+": "+error.response.text)
+			sound.play(globals.currentAccount,"error")
 		globals.errors.append("Error in "+name+": "+error.response.text)
-		sound.play(globals.currentAccount,"error")
 	else:
 		if error.reason!="" and error.reason!=None:
-			speak.speak("Error in "+name+": "+error.reason)
+			if globals.prefs.errors==True:
+				speak.speak("Error in "+name+": "+error.reason)
+				sound.play(globals.currentAccount,"error")
 			globals.errors.append("Error in "+name+": "+error.reason)
-			sound.play(globals.currentAccount,"error")
 
 def get_account(id):
 	for i in globals.accounts:

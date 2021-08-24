@@ -30,6 +30,9 @@ class general(wx.Panel, wx.Dialog):
 		self.wrap=wx.CheckBox(self, -1, "Word wrap in text fields")
 		self.main_box.Add(self.wrap, 0, wx.ALL, 10)
 		self.wrap.SetValue(globals.prefs.wrap)
+		self.errors=wx.CheckBox(self, -1, "Play sound and speak message for errors")
+		self.main_box.Add(self.errors, 0, wx.ALL, 10)
+		self.errors.SetValue(globals.prefs.errors)
 #		self.move_amount_label = wx.StaticText(self, -1, "Number of tweets to move when using control+windows+page up/down")
 #		self.move_amount = wx.TextCtrl(self, -1, "")
 #		self.main_box.Add(self.move_amount, 0, wx.ALL, 10)
@@ -180,6 +183,7 @@ class OptionsGui(wx.Dialog):
 			refresh=True
 		globals.prefs.demojify=self.general.demojify.GetValue()
 		globals.prefs.demojify_tweet=self.general.demojify_tweet.GetValue()
+		globals.prefs.errors=self.general.errors.GetValue()
 		globals.prefs.tweetTemplate=self.templates.tweetTemplate.GetValue()
 		globals.prefs.quoteTemplate=self.templates.quoteTemplate.GetValue()
 		globals.prefs.retweetTemplate=self.templates.retweetTemplate.GetValue()

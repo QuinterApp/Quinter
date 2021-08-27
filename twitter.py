@@ -17,7 +17,7 @@ import sys
 
 import globals
 import sound
-if platform.system() == "Windows":
+if platform.system() == "Windows" or platform.system() == "Linux":
 	API_KEY = "xyTlkymHxgbfjasI2OL0O2ssG"
 	API_SECRET = "sLKYWCCZw5zX6xR2K04enB0TAQLTwCsCHuQIEhZT4KHhkCM6zW"
 elif platform.system() == "Darwin":

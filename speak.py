@@ -1,6 +1,6 @@
 import platform
 
-if platform.system() == "Darwin":
+if platform.system() == "Darwin" or platform.system() == "Linux":
 	from accessible_output2 import outputs
 	speaker = outputs.auto.Auto()
 else:

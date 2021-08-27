@@ -39,5 +39,8 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
 			self.frame.OnClose(event)
 
 	def set_icon(self, path):
-#		icon = wx.Icon(wx.Bitmap(path))
-		self.SetIcon(Icon(), TRAY_TOOLTIP)
+		img = wx.Image("icon.png", wx.BITMAP_TYPE_ANY)
+		bmp = wx.BitmapFromImage(img)
+		icon = wx.EmptyIcon()
+		icon.CopyFromBitmap(bmp)
+		self.SetIcon(icon, TRAY_TOOLTIP)

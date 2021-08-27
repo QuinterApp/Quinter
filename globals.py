@@ -26,7 +26,7 @@ def  load():
 	global users
 	prefs=tweak.Config(name="Quinter",autosave=True)
 	confpath=prefs.user_config_dir
-	if platform.system()=="Darwin":
+	if platform.system()=="Darwin" or platform.system() == "Linux":
 		try:
 			f=open(confpath+"/errors.log","a")
 			sys.stderr=f

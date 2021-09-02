@@ -17,7 +17,7 @@ import threading
 class MainGui(wx.Frame):
 	def __init__(self, title):
 		self.invisible=False
-		wx.Frame.__init__(self, None, title=title,size=(800,600))
+		wx.Frame.__init__(self, None, title=title,size=wx.GetDisplaySize())
 		self.Center()
 		if platform.system()!="Darwin":
 			self.trayicon=tray.TaskBarIcon(self)
@@ -28,7 +28,7 @@ class MainGui(wx.Frame):
 		self.panel = wx.Panel(self)
 		self.main_box = wx.BoxSizer(wx.VERTICAL)
 		self.menuBar = wx.MenuBar()
-		if platform.system()!="Darwin":
+		if platform.system()!="Darwin" or platform.system() != "Linux":
 			ctrl="control"
 		else:
 			ctrl="command"
@@ -183,6 +183,7 @@ class MainGui(wx.Frame):
 		self.SetMenuBar(self.menuBar)
 		self.list_label=wx.StaticText(self.panel, -1, label="Timelines")
 		self.list=wx.ListBox(self.panel, -1)
+		self.list.SetSize(self.list.GetBestSize())
 		self.main_box.Add(self.list, 0, wx.ALL, 10)
 		self.list.Bind(wx.EVT_LISTBOX, self.on_list_change)
 		self.list.SetFocus()

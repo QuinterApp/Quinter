@@ -43,7 +43,8 @@ class general(wx.Panel, wx.Dialog):
 		self.footer = wx.TextCtrl(self, -1, "",style=wx.TE_MULTILINE)
 		self.main_box.Add(self.footer, 0, wx.ALL, 10)
 		self.footer.AppendText(account.prefs.footer)
-		self.footer.SetMaxLength(280)
+		if platform.system() != "Linux":
+			self.footer.SetMaxLength(280)
 
 	def OnPan(self,event):
 		pan=self.soundpan.GetValue()/50

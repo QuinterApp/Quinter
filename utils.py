@@ -554,7 +554,7 @@ def download_QPlay():
 
 def download_update(url):
 	try:
-		if os.path.exists("Quinter.zip"):
+		if platform.system()!="Darwin" and os.path.exists("Quinter.zip"):
 			os.remove("Quinter.zip")
 	except:
 		alert("The current version of Quinter.zip could not be removed.","Error")

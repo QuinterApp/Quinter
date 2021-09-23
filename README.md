@@ -2,6 +2,10 @@
 
 Quinter is a light-weight, robust, accessible Twitter client for Mac and Windows.
 
+## Note.
+
+I have stepped back from Quinter development. It was fun while it lasted, but the code is a mess, and a rewrite isn't work I'm willing to do. That said, I'll still check this repo for open Pull Requests, and merge them. I'm honestly not sure if GitHub let's contributors build releases, but if so, feel free once features get merged.
+
 ## Running
 
 ```batch

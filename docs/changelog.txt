@@ -1,3 +1,6 @@
+0.71
+Added a hotkey to jump up and down by 20 items in the invisible interface.
+
 0.70
 Adds posting of polls.
 Fixes reply settings.

@@ -2,6 +2,7 @@
 Added shortcut keys to the controls in the pole dialog.
 Now speak a message when exiting.
 Fix lookup users, which makes DM's now show recipients properly as well as populates the reply dialog.
+The updater code on Mac should now be able to download the zip file properly to your downloads.
 
 0.70
 Adds posting of polls.

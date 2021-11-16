@@ -320,11 +320,12 @@ class MainGui(wx.Frame):
 		speak.speak("Copied")
 
 	def OnClose(self, event=None):
+		speak.speak("Exiting.")
 		if platform.system()!="Darwin":
 			self.trayicon.on_exit(event,False)
 		self.Destroy()
 		sys.exit()
-
+	
 	def OnPlayExternal(self,event=None):
 		thread=threading.Thread(target=misc.play_external,args=(globals.currentAccount.currentTimeline.statuses[globals.currentAccount.currentTimeline.index],)).start()
 

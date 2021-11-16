@@ -518,7 +518,7 @@ def openURL(url):
 def download_file(url):
 	local_filename = url.split('/')[-1]
 	if platform.system()=="Darwin":
-		local_filename=os.expanduser("~/Downloads/"+local_filename)
+		local_filename=os.path.expanduser("~/Downloads/"+local_filename)
 	with requests.get(url, stream=True) as r:
 		r.raise_for_status()
 		with open(local_filename, 'wb') as f:

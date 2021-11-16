@@ -1,3 +1,8 @@
+0.71
+Added a hotkey to jump up and down by 20 items in the invisible interface.
+Added shortcut keys to the controls in the pole dialog.
+Now speak a message when exiting.
+
 0.70
 Adds posting of polls.
 Fixes reply settings.

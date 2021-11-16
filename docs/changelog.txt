@@ -1,5 +1,5 @@
 0.68
-Updated Tweepy to 0.68, opening up the possibilities for many new  features!
+Updated Tweepy to V4, opening up the possibilities for many new  features!
 
 0.67
 Auto updater for windows and update downloader for Mac.

@@ -55,6 +55,13 @@ class TweetGui(wx.Dialog):
 		if self.account.prefs.footer!="":
 			self.text.AppendText(" "+self.account.prefs.footer)
 		self.text.SetInsertionPoint(cursorpos)
+		self.reply_settings_label=wx.StaticText(self.panel, -1, "Who can reply?")
+		self.reply_settings=wx.Choice(self.panel,-1,size=(800,600))
+		self.reply_settings.Insert("Everyone",self.reply_settings.GetCount())
+		self.reply_settings.Insert("Mentioned Users Only",self.reply_settings.GetCount())
+		self.reply_settings.Insert("Following Only",self.reply_settings.GetCount())
+		self.reply_settings.SetSelection(0)
+		self.main_box.Add(self.reply_settings, 0, wx.ALL, 10)
 		if platform.system()=="Darwin":
 			self.autocomplete = wx.Button(self.panel, wx.ID_DEFAULT, "User A&utocomplete")
 		else:
@@ -169,6 +176,9 @@ class TweetGui(wx.Dialog):
 	def Tweet(self, event):
 		snd=""
 		if self.type!="message":
+			if self.reply_settings.GetSelection()==0: ReplySettings=None
+			elif self.reply_settings.GetSelection()==1: ReplySettings="mentionedUsers"
+			elif self.reply_settings.GetSelection()==2: ReplySettings="following"
 			globals.prefs.tweets_sent+=1
 			if self.status!=None:
 				if self.type=="quote":
@@ -183,11 +193,11 @@ class TweetGui(wx.Dialog):
 								if not self.list.IsChecked(index):
 									self.ids.append(str(i.id))
 								index+=1
-						status=self.account.tweet(self.text.GetValue(),self.status.id,exclude_reply_user_ids=",".join(self.ids))
+						status=self.account.tweet(self.text.GetValue(),self.status.id,exclude_reply_user_ids=",".join(self.ids),reply_settings=ReplySettings)
 					else:
-						status=self.account.tweet(self.text.GetValue(),self.status.id)
+						status=self.account.tweet(self.text.GetValue(),self.status.id,reply_settings=ReplySettings)
 			else:
-				status=self.account.tweet(self.text.GetValue())
+				status=self.account.tweet(self.text.GetValue(),reply_settings=ReplySettings)
 			globals.prefs.chars_sent+=len(self.text.GetValue())
 		else:
 			id=None

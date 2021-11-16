@@ -1,6 +1,7 @@
 0.68
 Updated Tweepy to V4, opening up the possibilities for many new  features!
-Using API V2 methods for posting and retweeting/quoting tweets.
+Using API V2 methods for posting and retweeting/quoting/liking tweets.
+Add support for setting reply settings for a tweet. This doesn't seem to work?
 
 0.67
 Auto updater for windows and update downloader for Mac.

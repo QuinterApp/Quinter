@@ -63,7 +63,7 @@ class timeline(object):
 			self.update_kwargs['list_id']=self.data
 			self.prev_kwargs['list_id']=self.data
 		elif self.type=="search":
-			self.func=self.account.api.search
+			self.func=self.account.api.search_tweets
 			self.update_kwargs['q']=self.data
 			self.prev_kwargs['q']=self.data
 		if self.type!="conversation":

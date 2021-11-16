@@ -1,4 +1,4 @@
 shortname="quinter"
 name = "Quinter"
-version = "0.68"
+version = "0.69"
 author = "Quin and Melody"

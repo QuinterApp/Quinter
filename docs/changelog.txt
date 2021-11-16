@@ -1,3 +1,7 @@
+0.70
+Adds posting of polls.
+Fixes reply settings.
+
 0.69
 Fixes searches.
 

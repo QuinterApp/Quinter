@@ -1,5 +1,6 @@
 0.68
 Updated Tweepy to V4, opening up the possibilities for many new  features!
+Using API V2 methods for posting and retweeting/quoting tweets.
 
 0.67
 Auto updater for windows and update downloader for Mac.

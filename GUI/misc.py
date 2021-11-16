@@ -308,7 +308,7 @@ def next_from_user(account):
 
 def delete(account,status):
 	try:
-		account.api.destroy_status(id=status.id)
+		account.api2.delete_tweet(id=status.id)
 		account.currentTimeline.statuses.remove(status)
 		main.window.list2.Delete(account.currentTimeline.index)
 		sound.play(globals.currentAccount,"delete")

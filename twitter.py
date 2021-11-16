@@ -204,19 +204,19 @@ class twitter(object):
 	def tweet(self,text,id=None,**kwargs):
 		try:
 			if id!=None:
-				return self.api.update_status(status=text,in_reply_to_status_id=id,**kwargs)
+				return self.api2.create_tweet(text=text,in_reply_to_tweet_id=id,**kwargs)
 			else:
-				return self.api.update_status(status=text)
+				return self.api2.create_tweet(text=text)
 			return True
 		except Exception as e:
 			speak.speak(str(e))
 			return False
 
 	def retweet(self,id):
-		self.api.retweet(id=id)
+		self.api2.retweet(tweet_id=id)
 
 	def quote(self,status,text):
-		return self.api.update_status(status=text, attachment_url = "https://twitter.com/"+status.user.screen_name+"/status/"+str(status.id))
+		return self.api2.create_tweet(quote_tweet_id=status.id, text=text)
 
 	def like(self,id):
 		self.api2.like(tweet_id=id)
@@ -225,16 +225,16 @@ class twitter(object):
 		self.api2.unlike(tweet_id=id)
 
 	def follow(self,status):
-		self.api.create_friendship(id=status)
+		self.api.create_friendship(screen_name=status)
 
 	def unfollow(self,status):
-		self.api.destroy_friendship(id=status)
+		self.api.destroy_friendship(screen_name=status)
 
 	def block(self,status):
-		self.api.create_block(id=status)
+		self.api.create_block(screen_name=status)
 
 	def unblock(self,status):
-		self.api.destroy_block(id=status)
+		self.api.destroy_block(screen_name=status)
 
 	def UpdateProfile(self,name,url,location,description):
 		self.api.update_profile(name=name,url=url,location=location,description=description)

@@ -183,7 +183,7 @@ class TweetGui(wx.Dialog):
 								if not self.list.IsChecked(index):
 									self.ids.append(str(i.id))
 								index+=1
-						status=self.account.tweet(self.text.GetValue(),self.status.id,auto_populate_reply_metadata=True,exclude_reply_user_ids=",".join(self.ids))
+						status=self.account.tweet(self.text.GetValue(),self.status.id,exclude_reply_user_ids=",".join(self.ids))
 					else:
 						status=self.account.tweet(self.text.GetValue(),self.status.id)
 			else:

@@ -40,10 +40,6 @@ def  load():
 		shutil.copytree("/applications/quinter.app/sounds/default",confpath+"/sounds/default")
 	else:
 		shutil.copytree("sounds/default",confpath+"/sounds/default")
-	uaccounts = os.listdir(confpath+"/..")
-	for i in uaccounts:
-		if "Quinter_account" in i:
-			shutil.move(confpath+"/../"+i,confpath+"/"+i.replace("Quinter_",""))
 	prefs.timelinecache_version=prefs.get("timelinecache_version",1)
 	if prefs.timelinecache_version==1:
 		if os.path.exists(confpath+"/timelinecache"):

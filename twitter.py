@@ -1,6 +1,6 @@
 import datetime
 import tweepy
-from tweepy import TweepError
+from tweepy import TweepyException
 import streaming
 import application
 import utils
@@ -59,7 +59,7 @@ class twitter(object):
 		else:
 			self.auth.set_access_token(self.prefs.key,self.prefs.secret)
 		self.api = tweepy.API(self.auth)
-		self.me=self.api.me()
+		self.me=self.api.verify_credentials()
 		if globals.currentAccount==None:
 			globals.currentAccount=self
 			main.window.SetLabel(self.me.screen_name+" - "+application.name+" "+application.version)
@@ -93,10 +93,8 @@ class twitter(object):
 
 	def start_stream(self):
 		if self.stream_listener==None:
-			self.stream_listener = streaming.StreamListener(self)
-		if self.stream == None or self.stream != None and not self.stream.running:
-			self.stream = streaming.Stream(auth = self.auth, listener=self.stream_listener,stall_warnings=True)
-			self.stream_thread=threading.Thread(target=self.stream.filter, kwargs={"follow":self.stream_listener.users},daemon=True)
+			self.stream_listener = streaming.StreamListener(self,API_KEY,API_SECRET,self.prefs.key,self.prefs.secret)
+			self.stream_thread=threading.Thread(target=self.stream_listener.filter, kwargs={"follow":self.stream_listener.users},daemon=True)
 			self.stream_thread.start()
 
 	def followers(self,id):
@@ -104,8 +102,8 @@ class twitter(object):
 		cursor=-1
 		followers=[]
 		try:
-			f=self.api.followers(id=id,cursor=cursor,count=200)
-		except TweepError as err:
+			f=self.api.get_followers(id=id,cursor=cursor,count=200)
+		except TweepyException as err:
 			utils.handle_error(err,"followers")
 			return []
 		for i in f[0]:
@@ -116,9 +114,9 @@ class twitter(object):
 			if count>=globals.prefs.user_limit:
 				return followers
 			try:
-				f=self.api.followers(id=id,cursor=cursor,count=200)
+				f=self.api.get_followers(id=id,cursor=cursor,count=200)
 				count+=1
-			except TweepError as err:
+			except TweepyException as err:
 				utils.handle_error(err,"followers")
 				return followers
 			if len(f[0])==0:
@@ -135,8 +133,8 @@ class twitter(object):
 		cursor=-1
 		followers=[]
 		try:
-			f=self.api.friends(id=id,cursor=cursor,count=200)
-		except TweepError as err:
+			f=self.api.get_friends(id=id,cursor=cursor,count=200)
+		except TweepyException as err:
 			utils.handle_error(err,"friends")
 			return []
 		for i in f[0]:
@@ -147,9 +145,9 @@ class twitter(object):
 			if count>=globals.prefs.user_limit:
 				return followers
 			try:
-				f=self.api.friends(id=id,cursor=cursor,count=200)
+				f=self.api.get_friends(id=id,cursor=cursor,count=200)
 				count+=1
-			except TweepError as err:
+			except TweepyException as err:
 				utils.handle_error(err,"friends")
 				return followers
 			if len(f[0])==0:
@@ -205,37 +203,37 @@ class twitter(object):
 	def tweet(self,text,id=None,**kwargs):
 		try:
 			if id!=None:
-				return self.api.update_status(text,id,**kwargs)
+				return self.api.update_status(status=text,in_reply_to_id=id,**kwargs)
 			else:
-				return self.api.update_status(text)
+				return self.api.update_status(status=text)
 			return True
 		except Exception as e:
 			speak.speak(str(e))
 			return False
 
 	def retweet(self,id):
-		self.api.retweet(id)
+		self.api.retweet(id=id)
 
 	def quote(self,status,text):
-		return self.api.update_status(text, attachment_url = "https://twitter.com/"+status.user.screen_name+"/status/"+str(status.id))
+		return self.api.update_status(status=text, attachment_url = "https://twitter.com/"+status.user.screen_name+"/status/"+str(status.id))
 
 	def like(self,id):
-		self.api.create_favorite(id)
+		self.api.create_favorite(id=id)
 
 	def unlike(self,id):
-		self.api.destroy_favorite(id)
+		self.api.destroy_favorite(id=id)
 
 	def follow(self,status):
-		self.api.create_friendship(status)
+		self.api.create_friendship(id=status)
 
 	def unfollow(self,status):
-		self.api.destroy_friendship(status)
+		self.api.destroy_friendship(id=status)
 
 	def block(self,status):
-		self.api.create_block(status)
+		self.api.create_block(id=status)
 
 	def unblock(self,status):
-		self.api.destroy_block(status)
+		self.api.destroy_block(id=status)
 
 	def UpdateProfile(self,name,url,location,description):
-		self.api.update_profile(name,url,location,description)
+		self.api.update_profile(name=name,url=url,location=location,description=description)

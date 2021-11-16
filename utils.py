@@ -417,7 +417,7 @@ def lookup_status(account,id):
 		for i2 in i.statuses:
 			if i2.id==id:
 				return i2
-	s=account.api.get_status(id,tweet_mode="extended")
+	s=account.api.get_status(id=id,tweet_mode="extended")
 	return s
 
 def find_status(tl,id):

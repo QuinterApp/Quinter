@@ -1,4 +1,4 @@
-from tweepy import TweepError
+from tweepy import TweepyException
 import globals, sound, timeline, utils
 import time
 import wx
@@ -70,13 +70,13 @@ class ChooseGui(wx.Dialog):
 			user=self.account.unblock(self.returnvalue)
 		elif self.type==self.TYPE_MUTE:
 			try:
-				user=self.account.api.create_mute(self.returnvalue)
-			except TweepError as e:
+				user=self.account.api.create_mute(screen_name=self.returnvalue)
+			except TweepyException as e:
 				utils.handle_error(e,"Mute")
 		elif self.type==self.TYPE_UNMUTE:
 			try:
-				user=self.account.api.destroy_mute(self.returnvalue)
-			except TweepError as e:
+				user=self.account.api.destroy_mute(screen_name=self.returnvalue)
+			except TweepyException as e:
 				utils.handle_error(e,"Unmute")
 		elif self.type==self.TYPE_USER_TIMELINE:
 			misc.user_timeline_user(self.account,self.returnvalue)

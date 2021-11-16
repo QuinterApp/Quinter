@@ -1,5 +1,5 @@
 import requests
-from tweepy import TweepError
+from tweepy import TweepyException
 import platform
 import twishort
 import globals
@@ -19,8 +19,8 @@ class ViewGui(wx.Dialog):
 			wx.Dialog.__init__(self, None, title="View Tweet from "+utils.lookup_user(status.message_create['sender_id']).name+" ("+utils.lookup_user(status.message_create['sender_id']).screen_name+")", size=(350,200)) # initialize the wx frame
 		else:
 			try:
-				self.status=account.api.get_status(status.id,include_ext_alt_text=True,tweet_mode="extended")
-			except TweepError as error:
+				self.status=account.api.get_status(id=status.id,include_ext_alt_text=True,tweet_mode="extended")
+			except TweepyException as error:
 				utils.handle_error(error)
 				self.Destroy()
 				return
@@ -125,9 +125,9 @@ class ViewGui(wx.Dialog):
 	def OnViewRetweeters(self,event):
 		users=[]
 		if hasattr(self.status,"retweeted_status"):
-			r=self.account.api.retweets(self.status.retweeted_status.id)
+			r=self.account.api.get_retweets(id=self.status.retweeted_status.id)
 		else:
-			r=self.account.api.retweets(self.status.id)
+			r=self.account.api.get_retweets(id=self.status.id)
 		for i in r:
 			users.append(i.user)
 		g=UserViewGui(self.account,users,"Retweeters")

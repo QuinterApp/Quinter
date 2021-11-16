@@ -4,7 +4,7 @@ class ProfileGui(wx.Dialog):
 
 	def __init__(self, account):
 		self.account=account
-		s=account.api.me()
+		s=account.api.verify_credentials()
 		wx.Dialog.__init__(self, None, title="Profile Editor", size=(350,200)) # initialize the wx frame
 		self.Bind(wx.EVT_CLOSE, self.OnClose)
 		self.panel = wx.Panel(self)

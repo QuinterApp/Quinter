@@ -1,4 +1,4 @@
-from tweepy import TweepError
+from tweepy import TweepyException
 import speak
 import wx
 import globals
@@ -195,8 +195,8 @@ class TweetGui(wx.Dialog):
 			if user!=-1:
 				id=user.id
 			try:
-				status=self.account.api.send_direct_message(id,self.text.GetValue())
-			except TweepError as error:
+				status=self.account.api.send_direct_message(recipient_id=id,text=self.text.GetValue())
+			except TweepyException as error:
 				sound.play(self.account,"error")
 				if hasattr(error,"response") and error.response!=None:
 					speak.speak(error.response.text)

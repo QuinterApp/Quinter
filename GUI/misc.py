@@ -8,7 +8,7 @@ import utils
 from . import chooser, main, tweet, view
 import timeline
 import globals
-from tweepy import TweepError
+from tweepy import TweepyException
 def reply(account,status):
 	NewTweet=tweet.TweetGui(account,"",type="reply",status=status)
 	NewTweet.Show()
@@ -55,7 +55,7 @@ def follow_user(account,username):
 	try:
 		user=account.follow(username)
 		sound.play(globals.currentAccount,"follow")
-	except TweepError as error:
+	except TweepyException as error:
 		utils.handle_error(error,"Follow "+username)
 
 def unfollow(account,status):
@@ -69,7 +69,7 @@ def unfollow_user(account,username):
 	try:
 		user=account.unfollow(username)
 		sound.play(globals.currentAccount,"unfollow")
-	except TweepError as error:
+	except TweepyException as error:
 		utils.handle_error(error,"Unfollow "+username)
 
 def block(account,status):
@@ -133,7 +133,7 @@ def retweet(account,status):
 		account.retweet(status.id)
 		globals.prefs.retweets_sent+=1
 		sound.play(globals.currentAccount,"send_retweet")
-	except TweepError as error:
+	except TweepyException as error:
 		utils.handle_error(error,"retweet")
 
 def like(account,status):
@@ -147,7 +147,7 @@ def like(account,status):
 			globals.prefs.likes_sent+=1
 			status.favorited=True
 			sound.play(globals.currentAccount,"like")
-	except TweepError as error:
+	except TweepyException as error:
 		utils.handle_error(error,"like tweet")
 
 def followers(account,id=-1):
@@ -228,7 +228,7 @@ def search(account,q,focus=True):
 		main.window.on_list_change(None)
 
 def user_search(account,q):
-	users=account.api.search_users(q,page=1)
+	users=account.api.search_users(q=q,page=1)
 	u=view.UserViewGui(account,users,"User search for "+q)
 	u.Show()
 
@@ -308,12 +308,12 @@ def next_from_user(account):
 
 def delete(account,status):
 	try:
-		account.api.destroy_status(status.id)
+		account.api.destroy_status(id=status.id)
 		account.currentTimeline.statuses.remove(status)
 		main.window.list2.Delete(account.currentTimeline.index)
 		sound.play(globals.currentAccount,"delete")
 		main.window.list2.SetSelection(account.currentTimeline.index)
-	except TweepError as error:
+	except TweepyException as error:
 		utils.handle_error(error,"Delete tweet")
 
 def load_conversation(account,status):

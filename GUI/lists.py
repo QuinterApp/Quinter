@@ -8,7 +8,7 @@ class ListsGui(wx.Dialog):
 		self.account=account
 		self.add=add
 		self.user=user
-		self.lists=self.account.api.lists_all()
+		self.lists=self.account.api.get_lists()
 		wx.Dialog.__init__(self, None, title="Lists", size=(350,200))
 		self.Bind(wx.EVT_CLOSE, self.OnClose)
 		self.panel = wx.Panel(self)
@@ -175,7 +175,7 @@ class NewListGui(wx.Dialog):
 
 	def Create(self, event):
 		if self.list==None:
-			self.account.api.create_list(self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
+			self.account.api.create_list(name=self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
 		else:
 			self.account.api.update_list(list_id=self.list.id, name=self.text.GetValue(),mode=self.type.GetString(self.type.GetSelection()),description=self.text2.GetValue())
 		self.Destroy()

@@ -1,4 +1,4 @@
-from tweepy import TweepError
+from tweepy import TweepyException
 import time
 import globals
 import utils
@@ -51,9 +51,9 @@ class timeline(object):
 		elif self.type=="mentions":
 			self.func=self.account.api.mentions_timeline
 		elif self.type=="messages":
-			self.func=self.account.api.list_direct_messages
+			self.func=self.account.api.get_direct_messages
 		elif self.type=="likes":
-			self.func=self.account.api.favorites
+			self.func=self.account.api.get_favorites
 		elif self.type=="user":
 			self.func=self.account.api.user_timeline
 			self.update_kwargs['id']=self.data
@@ -152,7 +152,7 @@ class timeline(object):
 					tl=self.func(**self.update_kwargs)
 				else:
 					tl=self.func(**self.prev_kwargs)
-			except TweepError as error:
+			except TweepyException as error:
 				utils.handle_error(error,self.account.me.screen_name+"'s "+self.name)
 				if self.removable:
 					if self.type=="user" and self.data in self.account.prefs.user_timelines:
@@ -323,7 +323,7 @@ def timelineThread(account):
 			try:
 				if i.type=="list":
 					try:
-						members=account.api.list_members(list_id=i.data)
+						members=account.api.get_list_members(list_id=i.data)
 						i.members=[]
 						for i2 in members:
 							i.members.append(i2.id)
@@ -331,7 +331,7 @@ def timelineThread(account):
 						pass
 				if i.type!="conversation":
 					i.load()
-			except TweepError as error:
+			except TweepyException as error:
 				sound.play(account,"error")
 				if hasattr(error,"response"):
 					speak.speak(error.response.text)

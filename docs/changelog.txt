@@ -1,3 +1,6 @@
+0.68
+Updated Tweepy to 0.68, opening up the possibilities for many new  features!
+
 0.67
 Auto updater for windows and update downloader for Mac.
 Removed a few unneeded DLL files, making the directory cleaner.

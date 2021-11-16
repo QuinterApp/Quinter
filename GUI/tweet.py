@@ -7,6 +7,7 @@ import utils
 import platform
 if platform.system()!="Darwin":
 	import twitter_text.parse_tweet
+from . import poll
 
 text_box_size=(800,600)
 class TweetGui(wx.Dialog):
@@ -17,6 +18,11 @@ class TweetGui(wx.Dialog):
 		self.max_length=0
 		self.status=status
 		self.type=type
+		self.poll_runfor=None
+		self.poll_opt1=None
+		self.poll_opt2=None
+		self.poll_opt3=None
+		self.poll_opt4=None
 		wx.Dialog.__init__(self, None, title=type, size=(350,200))
 		self.Bind(wx.EVT_CLOSE, self.OnClose)
 		self.panel = wx.Panel(self)
@@ -55,19 +61,24 @@ class TweetGui(wx.Dialog):
 		if self.account.prefs.footer!="":
 			self.text.AppendText(" "+self.account.prefs.footer)
 		self.text.SetInsertionPoint(cursorpos)
-		self.reply_settings_label=wx.StaticText(self.panel, -1, "Who can reply?")
-		self.reply_settings=wx.Choice(self.panel,-1,size=(800,600))
-		self.reply_settings.Insert("Everyone",self.reply_settings.GetCount())
-		self.reply_settings.Insert("Mentioned Users Only",self.reply_settings.GetCount())
-		self.reply_settings.Insert("Following Only",self.reply_settings.GetCount())
-		self.reply_settings.SetSelection(0)
-		self.main_box.Add(self.reply_settings, 0, wx.ALL, 10)
+		if self.type!="message":
+			self.reply_settings_label=wx.StaticText(self.panel, -1, "Who can reply?")
+			self.reply_settings=wx.Choice(self.panel,-1,size=(800,600))
+			self.reply_settings.Insert("Everyone",self.reply_settings.GetCount())
+			self.reply_settings.Insert("Mentioned Users Only",self.reply_settings.GetCount())
+			self.reply_settings.Insert("Following Only",self.reply_settings.GetCount())
+			self.reply_settings.SetSelection(0)
+			self.main_box.Add(self.reply_settings, 0, wx.ALL, 10)
 		if platform.system()=="Darwin":
 			self.autocomplete = wx.Button(self.panel, wx.ID_DEFAULT, "User A&utocomplete")
 		else:
 			self.autocomplete = wx.Button(self.panel, wx.ID_DEFAULT, "User &Autocomplete")
 		self.autocomplete.Bind(wx.EVT_BUTTON, self.Autocomplete)
 		self.main_box.Add(self.autocomplete, 0, wx.ALL, 10)
+		if self.type!="reply" and self.type!="message":
+			self.poll = wx.Button(self.panel, wx.ID_DEFAULT, "Poll")
+			self.poll.Bind(wx.EVT_BUTTON, self.Poll)
+			self.main_box.Add(self.poll, 0, wx.ALL, 10)
 		if self.type=="reply" and self.status!=None and "user_mentions" in self.status.entities and len(self.status.entities['user_mentions'])>0:
 			self.users=utils.get_user_objects_in_tweet(self.account,self.status,True,True)
 			self.list_label=wx.StaticText(self.panel, -1, label="&Users to include in reply")
@@ -91,6 +102,17 @@ class TweetGui(wx.Dialog):
 		self.Chars(None)
 		self.text.Bind(wx.EVT_CHAR, self.onKeyPress)
 		self.panel.Layout()
+
+	def Poll(self,event):
+		p=poll.PollGui()
+		result=p.ShowModal()
+		if result==wx.ID_CANCEL: return False
+		self.poll_runfor=p.runfor.GetValue()*60*24
+		self.poll_opt1=p.opt1.GetValue()
+		self.poll_opt2=p.opt2.GetValue()
+		self.poll_opt3=p.opt3.GetValue()
+		self.poll_opt4=p.opt4.GetValue()
+		self.poll.Enable(False)
 
 	def onKeyPress(self,event):
 		mods = event.HasAnyModifiers()
@@ -197,7 +219,15 @@ class TweetGui(wx.Dialog):
 					else:
 						status=self.account.tweet(self.text.GetValue(),self.status.id,reply_settings=ReplySettings)
 			else:
-				status=self.account.tweet(self.text.GetValue(),reply_settings=ReplySettings)
+				if self.poll_opt1!=None and self.poll_opt1!="":
+					opts=[]
+					if self.poll_opt1!="" and self.poll_opt1!=None: opts.append(self.poll_opt1)
+					if self.poll_opt2!="" and self.poll_opt2!=None: opts.append(self.poll_opt2)
+					if self.poll_opt3!="" and self.poll_opt3!=None: opts.append(self.poll_opt3)
+					if self.poll_opt4!="" and self.poll_opt4!=None: opts.append(self.poll_opt4)
+					status=self.account.tweet(self.text.GetValue(),id=None, reply_settings=ReplySettings, poll_duration_minutes=self.poll_runfor, poll_options=opts)
+				else:
+					status=self.account.tweet(self.text.GetValue(),reply_settings=ReplySettings)
 			globals.prefs.chars_sent+=len(self.text.GetValue())
 		else:
 			id=None

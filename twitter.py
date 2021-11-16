@@ -206,7 +206,7 @@ class twitter(object):
 			if id!=None:
 				return self.api2.create_tweet(text=text,in_reply_to_tweet_id=id,**kwargs)
 			else:
-				return self.api2.create_tweet(text=text)
+				return self.api2.create_tweet(text=text,**kwargs)
 			return True
 		except Exception as e:
 			speak.speak(str(e))

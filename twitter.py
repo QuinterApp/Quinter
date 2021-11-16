@@ -203,7 +203,7 @@ class twitter(object):
 	def tweet(self,text,id=None,**kwargs):
 		try:
 			if id!=None:
-				return self.api.update_status(status=text,in_reply_to_id=id,**kwargs)
+				return self.api.update_status(status=text,in_reply_to_status_id=id,**kwargs)
 			else:
 				return self.api.update_status(status=text)
 			return True

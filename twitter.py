@@ -59,6 +59,7 @@ class twitter(object):
 		else:
 			self.auth.set_access_token(self.prefs.key,self.prefs.secret)
 		self.api = tweepy.API(self.auth)
+		self.api2 = tweepy.Client(consumer_key=API_KEY,consumer_secret=API_SECRET,access_token=self.prefs.key,access_token_secret=self.prefs.secret)
 		self.me=self.api.verify_credentials()
 		if globals.currentAccount==None:
 			globals.currentAccount=self
@@ -218,10 +219,10 @@ class twitter(object):
 		return self.api.update_status(status=text, attachment_url = "https://twitter.com/"+status.user.screen_name+"/status/"+str(status.id))
 
 	def like(self,id):
-		self.api.create_favorite(id=id)
+		self.api2.like(tweet_id=id)
 
 	def unlike(self,id):
-		self.api.destroy_favorite(id=id)
+		self.api2.unlike(tweet_id=id)
 
 	def follow(self,status):
 		self.api.create_friendship(id=status)

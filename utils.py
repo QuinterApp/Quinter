@@ -379,8 +379,8 @@ def lookup_user_name(account,name,use_api=True):
 def get_user_objects_in_tweet(account,status,exclude_self=False,exclude_orig=False):
 	users=[]
 	if hasattr(status,"message_create"):
-		users.append(lookup_user(id=status.message_create['sender_id']))
-		users.append(lookup_user(id=status.message_create['target']['recipient_id']))
+		users.append(lookup_user(status.message_create['sender_id']))
+		users.append(lookup_user(status.message_create['target']['recipient_id']))
 		return users
 	if status.user not in users and not exclude_orig:
 		users.append(status.user)

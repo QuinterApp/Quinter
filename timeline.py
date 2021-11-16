@@ -341,7 +341,7 @@ def timelineThread(account):
 			account.start_stream()
 		if len(globals.unknown_users)>0:
 			try:
-				new_users=account.api.lookup_users(user_ids=globals.unknown_users)
+				new_users=account.api.lookup_users(user_id=globals.unknown_users)
 				for i in new_users:
 					if i not in globals.users:
 						globals.users.insert(0,i)

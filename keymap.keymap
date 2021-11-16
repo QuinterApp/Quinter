@@ -46,5 +46,3 @@ alt+win+control+a=speak_account
 control+alt+shift+win+return=TweetUrl
 alt+win+shift+e=Read
 alt+win+shift+m=Mute
-control+win+pageup=prev_item_jump
-control+win+pagedown=next_item_jump

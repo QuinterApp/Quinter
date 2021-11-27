@@ -17,12 +17,8 @@ import sys
 
 import globals
 import sound
-if platform.system() == "Windows":
-	API_KEY = "xyTlkymHxgbfjasI2OL0O2ssG"
-	API_SECRET = "sLKYWCCZw5zX6xR2K04enB0TAQLTwCsCHuQIEhZT4KHhkCM6zW"
-elif platform.system() == "Darwin":
-	API_KEY = "pCQOjY5bd1ifqve7WeTEhcm2Z"
-	API_SECRET = "aKRqASlPQyWTigLmy1x4n16Kg5LCnidZK1eVRSVMIqPB56XtU7"
+API_KEY = "xyTlkymHxgbfjasI2OL0O2ssG"
+API_SECRET = "sLKYWCCZw5zX6xR2K04enB0TAQLTwCsCHuQIEhZT4KHhkCM6zW"
 
 class twitter(object):
 	def __init__(self,index):

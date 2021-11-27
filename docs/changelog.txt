@@ -1,3 +1,5 @@
+0.72
+Fixes Quinter for mac. You will need to reauth. Twitter broke it, not us.
 0.71
 Added shortcut keys to the controls in the pole dialog.
 Now speak a message when exiting.

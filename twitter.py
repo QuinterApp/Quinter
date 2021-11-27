@@ -21,8 +21,8 @@ if platform.system() == "Windows":
 	API_KEY = "xyTlkymHxgbfjasI2OL0O2ssG"
 	API_SECRET = "sLKYWCCZw5zX6xR2K04enB0TAQLTwCsCHuQIEhZT4KHhkCM6zW"
 elif platform.system() == "Darwin":
-	API_KEY = "8bFd4pp6RBS6Q5YDY0gcAbZxK"
-	API_SECRET = "ii00aW2b15hioe2h5qS04PwBUusOUMttTQ8g02uig2aoWSaaqP"
+	API_KEY = "GhhTEHEe5Q5qCmUWXO4rS1THe"
+	API_SECRET = "wmPlvf8BYPWvZt8I2UW5TGuBavidAJR5UAfSdIHvVvbyQA9rRg"
 
 class twitter(object):
 	def __init__(self,index):

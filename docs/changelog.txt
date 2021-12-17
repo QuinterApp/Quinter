@@ -1,3 +1,10 @@
+0.73
+If you click no on the update available dialog, you no longer get told that a zip couldn't be found for your platfom.
+Fix list members and subscribers in the lists manager.
+
+0.72
+Fixes Mac API keys.
+
 0.71
 Added shortcut keys to the controls in the pole dialog.
 Now speak a message when exiting.

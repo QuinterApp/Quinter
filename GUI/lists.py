@@ -108,12 +108,12 @@ class ListsGui(wx.Dialog):
 
 	def ViewSubscribers(self, event):
 		list=self.lists[self.list.GetSelection()]
-		v=view.UserViewGui(self.account,self.account.api.list_subscribers(count=200, list_id=list.id),"List subscribers")
+		v=view.UserViewGui(self.account,self.account.api.get_list_subscribers(count=200, list_id=list.id),"List subscribers")
 		v.Show()
 
 	def ViewMembers(self, event):
 		list=self.lists[self.list.GetSelection()]
-		v=view.UserViewGui(self.account,self.account.api.list_members(count=200, list_id=list.id),"List members")
+		v=view.UserViewGui(self.account,self.account.api.get_list_members(count=200, list_id=list.id),"List members")
 		v.Show()
 
 	def Load(self, event):

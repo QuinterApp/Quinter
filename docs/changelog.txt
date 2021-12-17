@@ -3,7 +3,7 @@ If you click no on the update available dialog, you no longer get told that a zi
 Fix list members and subscribers in the lists manager.
 
 0.72
-Fixes Mac API keys.
+Fixes Quinter for mac. You will need to reauth. Twitter broke it, not us.
 
 0.71
 Added shortcut keys to the controls in the pole dialog.

@@ -1,5 +1,5 @@
 0.73
-If you click no on the update available dialog, you no longer get told that a zip couldn't be found for your platfom.
+If you click no on the update available dialog, you no longer get told that a zip couldn't be found for your platform.
 Fix list members and subscribers in the lists manager.
 
 0.72
